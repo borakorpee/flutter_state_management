@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../app_thema/app_thema.dart';
+import '../screens/product_detail_screen.dart';
 
 class ProductItem extends StatelessWidget {
   final appThema app_thema = appThema();
@@ -28,18 +29,27 @@ class ProductItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Expanded(
-                  child: Container(
-                    padding: EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: product_color,
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(75),
-                        topLeft: Radius.circular(20),
-                        bottomLeft: Radius.circular(95),
-                        bottomRight: Radius.circular(20),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (ctx) => ProductDetailScreen(title),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: product_color,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(75),
+                          topLeft: Radius.circular(20),
+                          bottomLeft: Radius.circular(95),
+                          bottomRight: Radius.circular(20),
+                        ),
                       ),
+                      child: Image.network(imageUrl),
                     ),
-                    child: Image.network(imageUrl),
                   ),
                 ),
                 Padding(
