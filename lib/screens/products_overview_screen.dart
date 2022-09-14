@@ -13,15 +13,17 @@ class ProductsOverviewScreen extends StatelessWidget {
       description: 'A red shirt - it is pretty red!',
       price: 29.99,
       imageUrl:
-          'https://cdn.pixabay.com/photo/2016/10/02/22/17/red-t-shirt-1710578_1280.jpg',
+          'https://www.freeiconspng.com/thumbs/bag-png/clothing-bag-png-1.png',
+      color: Colors.brown,
     ),
     Product(
       id: 'p2',
-      title: 'Trousers',
+      title: 'Phone',
       description: 'A nice pair of trousers.',
       price: 59.99,
       imageUrl:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Trousers%2C_dress_%28AM_1960.022-8%29.jpg/512px-Trousers%2C_dress_%28AM_1960.022-8%29.jpg',
+          'https://www.kvk.com/images/Product/23032022120708_koknaryesili1%20kopyas%C4%B1.png?undefined=undefined',
+      color: Color.fromARGB(255, 88, 99, 85),
     ),
     Product(
       id: 'p3',
@@ -29,7 +31,8 @@ class ProductsOverviewScreen extends StatelessWidget {
       description: 'Warm and cozy - exactly what you need for the winter.',
       price: 19.99,
       imageUrl:
-          'https://live.staticflickr.com/4043/4438260868_cc79b3369d_z.jpg',
+          'https://www.fitbit.com/global/content/dam/fitbit/global/marketing-pages/home/tablet/home-product-tile-smartwatches-sense2-fall22.png',
+      color: Colors.black38,
     ),
     Product(
       id: 'p4',
@@ -37,7 +40,44 @@ class ProductsOverviewScreen extends StatelessWidget {
       description: 'Prepare any meal you want.',
       price: 49.99,
       imageUrl:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
+          'https://cdn.shopify.com/s/files/1/0573/2309/4216/products/LosAngeles_SandGold_001.png?v=1650876856',
+      color: Colors.grey[600],
+    ),
+    Product(
+      id: 'p1',
+      title: 'Red Shirt',
+      description: 'A red shirt - it is pretty red!',
+      price: 29.99,
+      imageUrl:
+          'https://www.freeiconspng.com/thumbs/bag-png/clothing-bag-png-1.png',
+      color: Colors.brown,
+    ),
+    Product(
+      id: 'p2',
+      title: 'Phone',
+      description: 'A nice pair of trousers.',
+      price: 59.99,
+      imageUrl:
+          'https://www.kvk.com/images/Product/23032022120708_koknaryesili1%20kopyas%C4%B1.png?undefined=undefined',
+      color: Color.fromARGB(255, 88, 99, 85),
+    ),
+    Product(
+      id: 'p3',
+      title: 'Yellow Scarf',
+      description: 'Warm and cozy - exactly what you need for the winter.',
+      price: 19.99,
+      imageUrl:
+          'https://www.fitbit.com/global/content/dam/fitbit/global/marketing-pages/home/tablet/home-product-tile-smartwatches-sense2-fall22.png',
+      color: Colors.black38,
+    ),
+    Product(
+      id: 'p4',
+      title: 'A Pan',
+      description: 'Prepare any meal you want.',
+      price: 49.99,
+      imageUrl:
+          'https://cdn.shopify.com/s/files/1/0573/2309/4216/products/LosAngeles_SandGold_001.png?v=1650876856',
+      color: Colors.grey[600],
     ),
   ];
   @override
@@ -45,19 +85,25 @@ class ProductsOverviewScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: app_thema.dark,
       appBar: CustomAppBar(app_thema),
-      body: GridView.builder(
-        padding: EdgeInsets.all(10.0),
-        itemCount: loadedProducts.length,
-        itemBuilder: (ctx, index) => ProductItem(
-          loadedProducts[index].id,
-          loadedProducts[index].title,
-          loadedProducts[index].imageUrl,
-        ),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 3 / 2,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        child: Expanded(
+          child: GridView.builder(
+            itemCount: loadedProducts.length,
+            itemBuilder: (ctx, index) => ProductItem(
+              loadedProducts[index].id,
+              loadedProducts[index].title,
+              loadedProducts[index].imageUrl,
+              loadedProducts[index].color,
+              loadedProducts[index].price,
+            ),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 0.75,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 20,
+            ),
+          ),
         ),
       ),
     );
