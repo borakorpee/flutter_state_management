@@ -10,10 +10,21 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: app_thema.darkest,
-      title: Text(appbar_title,
-          style:
-              GoogleFonts.raleway(fontSize: 26, fontWeight: FontWeight.bold)),
+      elevation: 0,
+      flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: <Color>[app_thema.darkest, app_thema.dark]))),
+      title: Text(
+        appbar_title,
+        style: GoogleFonts.robotoCondensed(
+          fontSize: 26,
+          fontWeight: FontWeight.bold,
+          letterSpacing: 3,
+        ),
+      ),
     );
   }
 }
