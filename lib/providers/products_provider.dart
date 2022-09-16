@@ -11,6 +11,7 @@ class Products with ChangeNotifier {
       imageUrl:
           'https://www.freeiconspng.com/thumbs/bag-png/clothing-bag-png-1.png',
       color: Colors.brown,
+      colorOptions: [Colors.red, Colors.black, Colors.yellow, Colors.cyan],
     ),
     Product(
       id: 'p2',
@@ -20,6 +21,7 @@ class Products with ChangeNotifier {
       imageUrl:
           'https://www.kvk.com/images/Product/23032022120708_koknaryesili1%20kopyas%C4%B1.png?undefined=undefined',
       color: Color.fromARGB(255, 88, 99, 85),
+      colorOptions: [Colors.red, Colors.black, Colors.yellow, Colors.orange],
     ),
     Product(
       id: 'p3',
@@ -29,6 +31,7 @@ class Products with ChangeNotifier {
       imageUrl:
           'https://www.fitbit.com/global/content/dam/fitbit/global/marketing-pages/home/tablet/home-product-tile-smartwatches-sense2-fall22.png',
       color: Colors.black38,
+      colorOptions: [Colors.red, Colors.black, Colors.yellow, Colors.cyan],
     ),
     Product(
       id: 'p4',
@@ -38,6 +41,7 @@ class Products with ChangeNotifier {
       imageUrl:
           'https://cdn.shopify.com/s/files/1/0573/2309/4216/products/LosAngeles_SandGold_001.png?v=1650876856',
       color: Colors.grey[600],
+      colorOptions: [Colors.red, Colors.black, Colors.yellow, Colors.cyan],
     ),
     Product(
       id: 'p1',
@@ -47,6 +51,7 @@ class Products with ChangeNotifier {
       imageUrl:
           'https://www.freeiconspng.com/thumbs/bag-png/clothing-bag-png-1.png',
       color: Colors.brown,
+      colorOptions: [Colors.red, Colors.black, Colors.yellow, Colors.cyan],
     ),
     Product(
       id: 'p2',
@@ -56,6 +61,7 @@ class Products with ChangeNotifier {
       imageUrl:
           'https://www.kvk.com/images/Product/23032022120708_koknaryesili1%20kopyas%C4%B1.png?undefined=undefined',
       color: Color.fromARGB(255, 88, 99, 85),
+      colorOptions: [Colors.red, Colors.black, Colors.yellow, Colors.cyan],
     ),
     Product(
       id: 'p3',
@@ -65,6 +71,7 @@ class Products with ChangeNotifier {
       imageUrl:
           'https://www.fitbit.com/global/content/dam/fitbit/global/marketing-pages/home/tablet/home-product-tile-smartwatches-sense2-fall22.png',
       color: Colors.black38,
+      colorOptions: [Colors.red, Colors.black, Colors.yellow, Colors.cyan],
     ),
     Product(
       id: 'p4',
@@ -74,6 +81,7 @@ class Products with ChangeNotifier {
       imageUrl:
           'https://cdn.shopify.com/s/files/1/0573/2309/4216/products/LosAngeles_SandGold_001.png?v=1650876856',
       color: Colors.grey[600],
+      colorOptions: [Colors.red, Colors.black, Colors.yellow, Colors.cyan],
     ),
   ];
 

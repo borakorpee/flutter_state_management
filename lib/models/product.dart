@@ -7,6 +7,7 @@ class Product {
   final double price;
   final String imageUrl;
   final Color color;
+  final List<Color> colorOptions;
   bool isFavorite;
 
   Product({
@@ -16,6 +17,7 @@ class Product {
     @required this.price,
     @required this.imageUrl,
     @required this.color,
+    @required this.colorOptions,
     this.isFavorite = false,
   });
 }

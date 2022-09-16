@@ -4,21 +4,28 @@ import 'package:provider/provider.dart';
 import '../app_thema/app_thema.dart';
 import '../providers/products_provider.dart';
 
-class ProductDetailScreen extends StatelessWidget {
+class ProductDetailScreen extends StatefulWidget {
   final String id;
-  final appThema app_thema = appThema();
 
   ProductDetailScreen(this.id);
+
+  @override
+  State<ProductDetailScreen> createState() => _ProductDetailScreenState();
+}
+
+class _ProductDetailScreenState extends State<ProductDetailScreen> {
+  int activeColor_index = 0;
+  final appThema app_thema = appThema();
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final loadedProduct =
-        Provider.of<Products>(context, listen: false).findById(id);
+        Provider.of<Products>(context, listen: false).findById(widget.id);
     return Scaffold(
-      backgroundColor: loadedProduct.color,
+      backgroundColor: loadedProduct.colorOptions[activeColor_index],
       appBar: AppBar(
-        backgroundColor: loadedProduct.color,
+        backgroundColor: loadedProduct.colorOptions[activeColor_index],
         elevation: 0,
         actions: <Widget>[
           IconButton(
@@ -55,26 +62,46 @@ class ProductDetailScreen extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         Row(
-                          children: <Widget>[
+                          children: [
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
+                              children: [
                                 Text("Color"),
                                 Row(
-                                  children: <Widget>[
-                                    ColorOption(
-                                      loadedProduct: loadedProduct,
-                                      color: loadedProduct.color,
-                                      isSelected: true,
-                                    ),
-                                    ColorOption(
-                                      loadedProduct: loadedProduct,
-                                      color: Colors.black,
-                                    ),
-                                    ColorOption(
-                                      loadedProduct: loadedProduct,
-                                      color: Colors.red,
-                                    ),
+                                  children: [
+                                    ...List.generate(
+                                        loadedProduct.colorOptions.length,
+                                        (index) {
+                                      return GestureDetector(
+                                        onTap: (() {
+                                          setState(() {
+                                            activeColor_index = index;
+                                          });
+                                        }),
+                                        child: Container(
+                                          margin: EdgeInsets.only(
+                                              top: 5, right: 10),
+                                          padding: EdgeInsets.all(2.5),
+                                          height: 24,
+                                          width: 24,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            border: Border.all(
+                                              color: activeColor_index == index
+                                                  ? loadedProduct.color
+                                                  : Colors.transparent,
+                                            ),
+                                          ),
+                                          child: DecoratedBox(
+                                            decoration: BoxDecoration(
+                                              color: loadedProduct
+                                                  .colorOptions[index],
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    })
                                   ],
                                 ),
                               ],
@@ -136,41 +163,6 @@ class ProductDetailScreen extends StatelessWidget {
             ),
           ],
         )),
-      ),
-    );
-  }
-}
-
-class ColorOption extends StatelessWidget {
-  final Color color;
-  final bool isSelected;
-  const ColorOption({
-    Key key,
-    @required this.loadedProduct,
-    this.color,
-    this.isSelected = false,
-  }) : super(key: key);
-
-  final Product loadedProduct;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 5, right: 10),
-      padding: EdgeInsets.all(2.5),
-      height: 24,
-      width: 24,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(
-          color: isSelected ? color : Colors.transparent,
-        ),
-      ),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: color,
-          shape: BoxShape.circle,
-        ),
       ),
     );
   }
