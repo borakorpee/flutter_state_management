@@ -5,7 +5,7 @@ class Products with ChangeNotifier {
   List<Product> _items = [
     Product(
       id: 'p1',
-      title: 'Red Shirt',
+      title: 'Fancy Bag',
       description: 'A red shirt - it is pretty red!',
       longDescription:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget efficitur metus. Vestibulum venenatis nisl id tincidunt blandit. Proin risus dui, ultricies sit amet mi quis, pellentesque dignissim massa. Duis quis ligula ut tortor ornare venenatis. Fusce nec tincidunt est. Pellentesque venenatis odio auctor accumsan congue.",
@@ -23,7 +23,7 @@ class Products with ChangeNotifier {
     ),
     Product(
       id: 'p2',
-      title: 'Phone',
+      title: 'iPhone',
       description: 'A nice pair of trousers.',
       longDescription:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget efficitur metus. Vestibulum venenatis nisl id tincidunt blandit. Proin risus dui, ultricies sit amet mi quis, pellentesque dignissim massa. Duis quis ligula ut tortor ornare venenatis. Fusce nec tincidunt est. Pellentesque venenatis odio auctor accumsan congue.",
@@ -41,16 +41,16 @@ class Products with ChangeNotifier {
     ),
     Product(
       id: 'p3',
-      title: 'Yellow Scarf',
+      title: 'Smart Watch',
       description: 'Warm and cozy - exactly what you need for the winter.',
       longDescription:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget efficitur metus. Vestibulum venenatis nisl id tincidunt blandit. Proin risus dui, ultricies sit amet mi quis, pellentesque dignissim massa. Duis quis ligula ut tortor ornare venenatis. Fusce nec tincidunt est. Pellentesque venenatis odio auctor accumsan congue.",
       price: 19.99,
       imageUrl:
           'https://www.fitbit.com/global/content/dam/fitbit/global/marketing-pages/home/tablet/home-product-tile-smartwatches-sense2-fall22.png',
-      color: Colors.black38,
+      color: Color.fromRGBO(61, 60, 61, 1),
       colorOptions: [
-        Colors.black38,
+        Color.fromRGBO(61, 60, 61, 1),
         Colors.red,
         Colors.black,
         Colors.yellow,
@@ -59,7 +59,7 @@ class Products with ChangeNotifier {
     ),
     Product(
       id: 'p4',
-      title: 'A Pan',
+      title: 'Bluetooth Headphone',
       description: 'Prepare any meal you want.',
       longDescription:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget efficitur metus. Vestibulum venenatis nisl id tincidunt blandit. Proin risus dui, ultricies sit amet mi quis, pellentesque dignissim massa. Duis quis ligula ut tortor ornare venenatis. Fusce nec tincidunt est. Pellentesque venenatis odio auctor accumsan congue.",
@@ -67,7 +67,13 @@ class Products with ChangeNotifier {
       imageUrl:
           'https://cdn.shopify.com/s/files/1/0573/2309/4216/products/LosAngeles_SandGold_001.png?v=1650876856',
       color: Colors.grey[600],
-      colorOptions: [Colors.red, Colors.black, Colors.yellow, Colors.cyan],
+      colorOptions: [
+        Colors.grey[600],
+        Colors.red,
+        Colors.black,
+        Colors.yellow,
+        Colors.cyan
+      ],
     ),
     Product(
       id: 'p1',

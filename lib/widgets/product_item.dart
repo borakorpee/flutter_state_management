@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../app_thema/app_thema.dart';
-import '../screens/product_detail_screen.dart';
+import '../screens/detail_page/product_detail_screen.dart';
 
 class ProductItem extends StatelessWidget {
   final appThema app_thema = appThema();
@@ -56,9 +56,11 @@ class ProductItem extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(
                     vertical: 5,
                   ),
-                  child: Text(
-                    title,
-                    style: TextStyle(color: app_thema.text, fontSize: 16),
+                  child: FittedBox(
+                    child: Text(
+                      title,
+                      style: TextStyle(color: app_thema.text, fontSize: 16),
+                    ),
                   ),
                 ),
                 Text(
