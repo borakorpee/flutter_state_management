@@ -50,9 +50,12 @@ class ProductTitleAndImage extends StatelessWidget {
               ),
               SizedBox(width: 20),
               Expanded(
-                child: Image.network(
-                  loadedProduct.imageUrl,
-                  fit: BoxFit.fill,
+                child: Hero(
+                  tag: loadedProduct.id,
+                  child: Image.network(
+                    loadedProduct.imageUrl,
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
             ],

@@ -22,9 +22,6 @@ class ProductItem extends StatelessWidget {
         children: <Widget>[
           Container(
             padding: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                border: Border.all(color: product_color, width: 2)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -41,14 +38,9 @@ class ProductItem extends StatelessWidget {
                       padding: EdgeInsets.all(20),
                       decoration: BoxDecoration(
                         color: product_color,
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(75),
-                          topLeft: Radius.circular(20),
-                          bottomLeft: Radius.circular(95),
-                          bottomRight: Radius.circular(20),
-                        ),
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      child: Image.network(imageUrl),
+                      child: Hero(tag: id, child: Image.network(imageUrl)),
                     ),
                   ),
                 ),
@@ -73,54 +65,8 @@ class ProductItem extends StatelessWidget {
               ],
             ),
           ),
-          Positioned(
-            right: 0,
-            top: -4,
-            child: IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.favorite_border,
-                size: 30,
-                color: app_thema.text,
-              ),
-            ),
-          ),
-          Positioned(
-            left: -4,
-            bottom: 50,
-            child: IconButton(
-              onPressed: (() {}),
-              icon: Icon(
-                Icons.shopping_cart_outlined,
-                size: 30,
-                color: app_thema.text,
-              ),
-            ),
-          ),
         ],
       ),
     );
-
-    /*GridTile(
-      child: Image.network(
-        imageUrl,
-        fit: BoxFit.cover,
-      ),
-      footer: GridTileBar(
-        leading: IconButton(
-          icon: Icon(Icons.favorite),
-          onPressed: () {},
-        ),
-        backgroundColor: Colors.black54,
-        title: Text(
-          title,
-          textAlign: TextAlign.center,
-        ),
-        trailing: IconButton(
-          icon: Icon(Icons.shopping_cart),
-          onPressed: () {},
-        ),
-      ),
-    );*/
   }
 }

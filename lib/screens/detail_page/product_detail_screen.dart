@@ -20,6 +20,8 @@ class ProductDetailScreen extends StatefulWidget {
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
   int activeColor_index = 0;
+  int numOfItems = 1;
+
   final appThema app_thema = appThema();
 
   @override
@@ -108,6 +110,29 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           ],
                         ),
                         Description(loadedProduct: loadedProduct),
+                        Row(
+                          children: <Widget>[
+                            buildOutlinedButton(Icons.remove, () {
+                              if (numOfItems > 1) {
+                                setState(() {
+                                  numOfItems--;
+                                });
+                              }
+                            }),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              child: Text(
+                                numOfItems.toString().padLeft(2, "0"),
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                            ),
+                            buildOutlinedButton(Icons.add, () {
+                              setState(() {
+                                numOfItems++;
+                              });
+                            }),
+                          ],
+                        ),
                         AddToCart(
                             loadedProduct: loadedProduct,
                             activeColor_index: activeColor_index,
@@ -127,4 +152,19 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       ),
     );
   }
+}
+
+buildOutlinedButton(IconData icon, Function press) {
+  return SizedBox(
+    width: 40,
+    height: 32,
+    child: OutlinedButton(
+      style: OutlinedButton.styleFrom(
+          padding: EdgeInsets.zero,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(13))),
+      onPressed: press,
+      child: Icon(icon),
+    ),
+  );
 }
