@@ -1,5 +1,6 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/models/product.dart';
 import 'package:provider/provider.dart';
 import '../app_thema/app_thema.dart';
 import '../providers/products_provider.dart';
@@ -19,6 +20,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    int numOfItems = 1;
     final size = MediaQuery.of(context).size;
     final loadedProduct =
         Provider.of<Products>(context, listen: false).findById(widget.id);
@@ -105,9 +107,103 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                   ],
                                 ),
                               ],
-                            )
+                            ),
                           ],
-                        )
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 20),
+                          child: Text(loadedProduct.longDescription,
+                              style: TextStyle(height: 1.5)),
+                        ),
+                        Row(
+                          children: <Widget>[
+                            SizedBox(
+                              width: 40,
+                              height: 32,
+                              child: OutlinedButton(
+                                style: OutlinedButton.styleFrom(
+                                    padding: EdgeInsets.zero,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(13))),
+                                onPressed: () {
+                                  setState(() {
+                                    numOfItems--;
+                                  });
+                                },
+                                child: Icon(Icons.remove),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              child: Text(
+                                numOfItems.toString().padLeft(2, "0"),
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 40,
+                              height: 32,
+                              child: OutlinedButton(
+                                style: OutlinedButton.styleFrom(
+                                    padding: EdgeInsets.zero,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(13))),
+                                onPressed: () {
+                                  numOfItems++;
+                                },
+                                child: Icon(Icons.add),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 20),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.only(right: 20),
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(18),
+                                  border: Border.all(
+                                      color: loadedProduct
+                                          .colorOptions[activeColor_index]),
+                                ),
+                                child: IconButton(
+                                  icon: Icon(
+                                    Icons.add_shopping_cart_outlined,
+                                    color: loadedProduct
+                                        .colorOptions[activeColor_index],
+                                  ),
+                                  onPressed: () {},
+                                ),
+                              ),
+                              Expanded(
+                                child: SizedBox(
+                                  height: 50,
+                                  child: FlatButton(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(18)),
+                                    color: loadedProduct
+                                        .colorOptions[activeColor_index],
+                                    child: Text(
+                                      "Buy Now".toUpperCase(),
+                                      style: TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold,
+                                          color: app_thema.text),
+                                    ),
+                                    onPressed: () {},
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),

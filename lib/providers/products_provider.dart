@@ -7,36 +7,62 @@ class Products with ChangeNotifier {
       id: 'p1',
       title: 'Red Shirt',
       description: 'A red shirt - it is pretty red!',
+      longDescription:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget efficitur metus. Vestibulum venenatis nisl id tincidunt blandit. Proin risus dui, ultricies sit amet mi quis, pellentesque dignissim massa. Duis quis ligula ut tortor ornare venenatis. Fusce nec tincidunt est. Pellentesque venenatis odio auctor accumsan congue.",
       price: 29.99,
       imageUrl:
           'https://www.freeiconspng.com/thumbs/bag-png/clothing-bag-png-1.png',
       color: Colors.brown,
-      colorOptions: [Colors.red, Colors.black, Colors.yellow, Colors.cyan],
+      colorOptions: [
+        Color.fromRGBO(139, 38, 43, 1),
+        Colors.blue,
+        Colors.black,
+        Colors.yellow,
+        Colors.cyan
+      ],
     ),
     Product(
       id: 'p2',
       title: 'Phone',
       description: 'A nice pair of trousers.',
+      longDescription:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget efficitur metus. Vestibulum venenatis nisl id tincidunt blandit. Proin risus dui, ultricies sit amet mi quis, pellentesque dignissim massa. Duis quis ligula ut tortor ornare venenatis. Fusce nec tincidunt est. Pellentesque venenatis odio auctor accumsan congue.",
       price: 59.99,
       imageUrl:
           'https://www.kvk.com/images/Product/23032022120708_koknaryesili1%20kopyas%C4%B1.png?undefined=undefined',
       color: Color.fromARGB(255, 88, 99, 85),
-      colorOptions: [Colors.red, Colors.black, Colors.yellow, Colors.orange],
+      colorOptions: [
+        Color.fromARGB(255, 88, 99, 85),
+        Colors.red,
+        Colors.black,
+        Colors.yellow,
+        Colors.orange
+      ],
     ),
     Product(
       id: 'p3',
       title: 'Yellow Scarf',
       description: 'Warm and cozy - exactly what you need for the winter.',
+      longDescription:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget efficitur metus. Vestibulum venenatis nisl id tincidunt blandit. Proin risus dui, ultricies sit amet mi quis, pellentesque dignissim massa. Duis quis ligula ut tortor ornare venenatis. Fusce nec tincidunt est. Pellentesque venenatis odio auctor accumsan congue.",
       price: 19.99,
       imageUrl:
           'https://www.fitbit.com/global/content/dam/fitbit/global/marketing-pages/home/tablet/home-product-tile-smartwatches-sense2-fall22.png',
       color: Colors.black38,
-      colorOptions: [Colors.red, Colors.black, Colors.yellow, Colors.cyan],
+      colorOptions: [
+        Colors.black38,
+        Colors.red,
+        Colors.black,
+        Colors.yellow,
+        Colors.cyan
+      ],
     ),
     Product(
       id: 'p4',
       title: 'A Pan',
       description: 'Prepare any meal you want.',
+      longDescription:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget efficitur metus. Vestibulum venenatis nisl id tincidunt blandit. Proin risus dui, ultricies sit amet mi quis, pellentesque dignissim massa. Duis quis ligula ut tortor ornare venenatis. Fusce nec tincidunt est. Pellentesque venenatis odio auctor accumsan congue.",
       price: 49.99,
       imageUrl:
           'https://cdn.shopify.com/s/files/1/0573/2309/4216/products/LosAngeles_SandGold_001.png?v=1650876856',
@@ -47,41 +73,73 @@ class Products with ChangeNotifier {
       id: 'p1',
       title: 'Red Shirt',
       description: 'A red shirt - it is pretty red!',
+      longDescription:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget efficitur metus. Vestibulum venenatis nisl id tincidunt blandit. Proin risus dui, ultricies sit amet mi quis, pellentesque dignissim massa. Duis quis ligula ut tortor ornare venenatis. Fusce nec tincidunt est. Pellentesque venenatis odio auctor accumsan congue.",
       price: 29.99,
       imageUrl:
           'https://www.freeiconspng.com/thumbs/bag-png/clothing-bag-png-1.png',
       color: Colors.brown,
-      colorOptions: [Colors.red, Colors.black, Colors.yellow, Colors.cyan],
+      colorOptions: [
+        Colors.brown,
+        Colors.red,
+        Colors.black,
+        Colors.yellow,
+        Colors.cyan
+      ],
     ),
     Product(
       id: 'p2',
       title: 'Phone',
       description: 'A nice pair of trousers.',
+      longDescription:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget efficitur metus. Vestibulum venenatis nisl id tincidunt blandit. Proin risus dui, ultricies sit amet mi quis, pellentesque dignissim massa. Duis quis ligula ut tortor ornare venenatis. Fusce nec tincidunt est. Pellentesque venenatis odio auctor accumsan congue.",
       price: 59.99,
       imageUrl:
           'https://www.kvk.com/images/Product/23032022120708_koknaryesili1%20kopyas%C4%B1.png?undefined=undefined',
       color: Color.fromARGB(255, 88, 99, 85),
-      colorOptions: [Colors.red, Colors.black, Colors.yellow, Colors.cyan],
+      colorOptions: [
+        Color.fromARGB(255, 88, 99, 85),
+        Colors.red,
+        Colors.black,
+        Colors.yellow,
+        Colors.cyan
+      ],
     ),
     Product(
       id: 'p3',
       title: 'Yellow Scarf',
       description: 'Warm and cozy - exactly what you need for the winter.',
+      longDescription:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget efficitur metus. Vestibulum venenatis nisl id tincidunt blandit. Proin risus dui, ultricies sit amet mi quis, pellentesque dignissim massa. Duis quis ligula ut tortor ornare venenatis. Fusce nec tincidunt est. Pellentesque venenatis odio auctor accumsan congue.",
       price: 19.99,
       imageUrl:
           'https://www.fitbit.com/global/content/dam/fitbit/global/marketing-pages/home/tablet/home-product-tile-smartwatches-sense2-fall22.png',
       color: Colors.black38,
-      colorOptions: [Colors.red, Colors.black, Colors.yellow, Colors.cyan],
+      colorOptions: [
+        Colors.black38,
+        Colors.red,
+        Colors.black,
+        Colors.yellow,
+        Colors.cyan
+      ],
     ),
     Product(
       id: 'p4',
       title: 'A Pan',
       description: 'Prepare any meal you want.',
+      longDescription:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget efficitur metus. Vestibulum venenatis nisl id tincidunt blandit. Proin risus dui, ultricies sit amet mi quis, pellentesque dignissim massa. Duis quis ligula ut tortor ornare venenatis. Fusce nec tincidunt est. Pellentesque venenatis odio auctor accumsan congue.",
       price: 49.99,
       imageUrl:
           'https://cdn.shopify.com/s/files/1/0573/2309/4216/products/LosAngeles_SandGold_001.png?v=1650876856',
       color: Colors.grey[600],
-      colorOptions: [Colors.red, Colors.black, Colors.yellow, Colors.cyan],
+      colorOptions: [
+        Colors.grey[600],
+        Colors.red,
+        Colors.black,
+        Colors.yellow,
+        Colors.cyan
+      ],
     ),
   ];
 
