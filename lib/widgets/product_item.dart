@@ -59,16 +59,18 @@ class ProductItem extends StatelessWidget {
                       color: app_thema.text,
                       fontSize: 16),
                 ),
-                IconButton(
-                    icon: Icon(product.isFavorite
-                        ? Icons.favorite
-                        : Icons.favorite_border),
-                    onPressed: () {
-                      product.toggleFavorite();
-                    }),
-                Text(product.isFavorite.toString()),
               ],
             ),
+          ),
+          Positioned(
+            child: IconButton(
+                icon: Icon(product.isFavorite
+                    ? Icons.favorite
+                    : Icons.favorite_border),
+                onPressed: () {
+                  product.toggleFavorite();
+                }),
+            top: -2,
           ),
         ],
       ),

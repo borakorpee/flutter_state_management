@@ -30,6 +30,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       context,
       listen: false,
     ).findById(widget.id);
+
     return Scaffold(
       backgroundColor: loadedProduct.colorOptions[activeColor_index],
       appBar: AppBar(
