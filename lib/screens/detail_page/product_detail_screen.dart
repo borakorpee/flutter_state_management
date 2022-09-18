@@ -1,13 +1,12 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/models/product.dart';
+import 'package:flutter_complete_guide/providers/product.dart';
 import 'package:provider/provider.dart';
 import '../../app_thema/app_thema.dart';
 import '../../providers/products_provider.dart';
 import 'components/add_to_cart.dart';
 import 'components/amount.dart';
-import 'components/appbar_icon.dart';
 import 'components/description.dart';
 import 'components/product_title_and_image.dart';
 
@@ -27,16 +26,24 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final loadedProduct =
-        Provider.of<Products>(context, listen: false).findById(widget.id);
+    final loadedProduct = Provider.of<Products>(
+      context,
+      listen: false,
+    ).findById(widget.id);
     return Scaffold(
       backgroundColor: loadedProduct.colorOptions[activeColor_index],
       appBar: AppBar(
         backgroundColor: loadedProduct.colorOptions[activeColor_index],
         elevation: 0,
         actions: <Widget>[
-          AppBarIcons(icon: Icon(Icons.favorite_border)),
-          AppBarIcons(icon: Icon(Icons.shopping_cart_outlined)),
+          IconButton(
+            icon: Icon(Icons.favorite_border),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(Icons.shopping_cart_outlined),
+            onPressed: () {},
+          ),
           SizedBox(width: 10),
         ],
       ),

@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../app_thema/app_thema.dart';
-import '../../../models/product.dart';
+import '../../../providers/product.dart';
 
 class AddToCart extends StatelessWidget {
   const AddToCart({
