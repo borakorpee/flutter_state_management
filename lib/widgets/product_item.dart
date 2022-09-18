@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../app_thema/app_thema.dart';
+import '../providers/cart.dart';
 import '../providers/product.dart';
 import '../screens/detail_page/product_detail_screen.dart';
 
@@ -9,7 +10,8 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final product = Provider.of<Product>(context);
+    final product = Provider.of<Product>(context, listen: false);
+    final cart = Provider.of<Cart>(context, listen: false);
     return Padding(
       padding: EdgeInsets.only(top: 10),
       child: Stack(
@@ -71,6 +73,14 @@ class ProductItem extends StatelessWidget {
                   product.toggleFavorite();
                 }),
             top: -2,
+          ),
+          Positioned(
+            child: IconButton(
+                icon: Icon(Icons.add_shopping_cart_outlined),
+                onPressed: () {
+                  cart.addItem(product.id, product.price, product.title);
+                }),
+            right: -2,
           ),
         ],
       ),
