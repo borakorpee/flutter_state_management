@@ -8,10 +8,12 @@ class ProductTitleAndImage extends StatelessWidget {
     Key key,
     @required this.loadedProduct,
     @required this.app_thema,
+    this.activeColor_index,
   }) : super(key: key);
 
   final Product loadedProduct;
   final appThema app_thema;
+  final int activeColor_index;
 
   @override
   Widget build(BuildContext context) {
@@ -48,14 +50,11 @@ class ProductTitleAndImage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(width: 20),
+              SizedBox(width: 40),
               Expanded(
-                child: Hero(
-                  tag: loadedProduct.id,
-                  child: Image.network(
-                    loadedProduct.imageUrl,
-                    fit: BoxFit.fill,
-                  ),
+                child: Image.network(
+                  loadedProduct.productPhotos[activeColor_index],
+                  fit: BoxFit.fill,
                 ),
               ),
             ],

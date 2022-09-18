@@ -9,6 +9,7 @@ class Product {
   final String imageUrl;
   final Color color;
   final List<Color> colorOptions;
+  final List<String> productPhotos;
   bool isFavorite;
 
   Product({
@@ -20,6 +21,7 @@ class Product {
     @required this.imageUrl,
     @required this.color,
     @required this.colorOptions,
+    @required this.productPhotos,
     this.isFavorite = false,
   });
 }

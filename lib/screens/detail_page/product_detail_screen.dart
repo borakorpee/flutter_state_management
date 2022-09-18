@@ -1,10 +1,12 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/models/product.dart';
 import 'package:provider/provider.dart';
 import '../../app_thema/app_thema.dart';
 import '../../providers/products_provider.dart';
 import 'components/add_to_cart.dart';
+import 'components/amount.dart';
 import 'components/appbar_icon.dart';
 import 'components/description.dart';
 import 'components/product_title_and_image.dart';
@@ -20,8 +22,6 @@ class ProductDetailScreen extends StatefulWidget {
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
   int activeColor_index = 0;
-  int numOfItems = 1;
-
   final appThema app_thema = appThema();
 
   @override
@@ -62,77 +62,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     ),
                     child: Column(
                       children: <Widget>[
-                        Row(
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Color"),
-                                Row(
-                                  children: [
-                                    ...List.generate(
-                                        loadedProduct.colorOptions.length,
-                                        (index) {
-                                      return GestureDetector(
-                                        onTap: (() {
-                                          setState(() {
-                                            activeColor_index = index;
-                                          });
-                                        }),
-                                        child: Container(
-                                          margin: EdgeInsets.only(
-                                              top: 5, right: 10),
-                                          padding: EdgeInsets.all(2.5),
-                                          height: 24,
-                                          width: 24,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            border: Border.all(
-                                              color: activeColor_index == index
-                                                  ? loadedProduct.color
-                                                  : Colors.transparent,
-                                            ),
-                                          ),
-                                          child: DecoratedBox(
-                                            decoration: BoxDecoration(
-                                              color: loadedProduct
-                                                  .colorOptions[index],
-                                              shape: BoxShape.circle,
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    })
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                        ColorOptions(loadedProduct),
                         Description(loadedProduct: loadedProduct),
-                        Row(
-                          children: <Widget>[
-                            buildOutlinedButton(Icons.remove, () {
-                              if (numOfItems > 1) {
-                                setState(() {
-                                  numOfItems--;
-                                });
-                              }
-                            }),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              child: Text(
-                                numOfItems.toString().padLeft(2, "0"),
-                                style: Theme.of(context).textTheme.headline6,
-                              ),
-                            ),
-                            buildOutlinedButton(Icons.add, () {
-                              setState(() {
-                                numOfItems++;
-                              });
-                            }),
-                          ],
-                        ),
+                        ProductCount(),
                         AddToCart(
                             loadedProduct: loadedProduct,
                             activeColor_index: activeColor_index,
@@ -143,6 +75,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   ProductTitleAndImage(
                     loadedProduct: loadedProduct,
                     app_thema: app_thema,
+                    activeColor_index: activeColor_index,
                   ),
                 ],
               ),
@@ -152,19 +85,50 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       ),
     );
   }
-}
 
-buildOutlinedButton(IconData icon, Function press) {
-  return SizedBox(
-    width: 40,
-    height: 32,
-    child: OutlinedButton(
-      style: OutlinedButton.styleFrom(
-          padding: EdgeInsets.zero,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(13))),
-      onPressed: press,
-      child: Icon(icon),
-    ),
-  );
+  ColorOptions(Product loadedProduct) {
+    return Row(
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Color"),
+            Row(
+              children: [
+                ...List.generate(loadedProduct.colorOptions.length, (index) {
+                  return GestureDetector(
+                    onTap: (() {
+                      setState(() {
+                        activeColor_index = index;
+                      });
+                    }),
+                    child: Container(
+                      margin: EdgeInsets.only(top: 5, right: 10),
+                      padding: EdgeInsets.all(2.5),
+                      height: 24,
+                      width: 24,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: activeColor_index == index
+                              ? loadedProduct.color
+                              : Colors.transparent,
+                        ),
+                      ),
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: loadedProduct.colorOptions[index],
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                    ),
+                  );
+                })
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
+  }
 }

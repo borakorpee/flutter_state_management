@@ -13,32 +13,36 @@ class Products with ChangeNotifier {
       imageUrl:
           'https://www.freeiconspng.com/thumbs/bag-png/clothing-bag-png-1.png',
       color: Colors.brown,
+      productPhotos: [
+        "https://www.freeiconspng.com/thumbs/bag-png/clothing-bag-png-1.png",
+      ],
       colorOptions: [
         Color.fromRGBO(139, 38, 43, 1),
-        Colors.blue,
-        Colors.black,
-        Colors.yellow,
-        Colors.cyan
       ],
     ),
     Product(
       id: 'p2',
-      title: 'iPhone',
-      description: 'A nice pair of trousers.',
+      title: 'iPhone 13',
+      description: 'Smarter then ever',
       longDescription:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget efficitur metus. Vestibulum venenatis nisl id tincidunt blandit. Proin risus dui, ultricies sit amet mi quis, pellentesque dignissim massa. Duis quis ligula ut tortor ornare venenatis. Fusce nec tincidunt est. Pellentesque venenatis odio auctor accumsan congue.",
       price: 59.99,
       imageUrl:
-          'https://www.kvk.com/images/Product/23032022120708_koknaryesili1%20kopyas%C4%B1.png?undefined=undefined',
-      color: Color.fromARGB(255, 88, 99, 85),
-      colorOptions: [
-        Color.fromARGB(255, 88, 99, 85),
-        Colors.red,
-        Colors.black,
-        Colors.yellow,
-        Colors.orange
+          'https://www.kvk.com/images/Product/23032022120500_koknaryesili1%20kopyas%C4%B1.png',
+      color: Color.fromRGBO(64, 77, 62, 1),
+      productPhotos: [
+        'https://www.kvk.com/images/Product/23032022120500_koknaryesili1%20kopyas%C4%B1.png',
+        'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-max-gold-select?wid=940&hei=1112&fmt=png-alpha&.v=1660777235605',
+        'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-spaceblack-select?wid=940&hei=1112&fmt=png-alpha&.v=1660777235198',
+        'https://glocalzone-assets.s3.eu-central-1.amazonaws.com/internet/19e082eb-ebf5-441d-b1e4-dcdd7e61d5d2.jpeg',
       ],
-    ),
+      colorOptions: [
+        Color.fromRGBO(64, 77, 62, 1),
+        Color.fromRGBO(151, 174, 198, 1),
+        Color.fromRGBO(49, 47, 46, 1),
+        Color.fromRGBO(82, 80, 77, 1),
+      ],
+    ), /*
     Product(
       id: 'p3',
       title: 'Smart Watch',
@@ -146,7 +150,7 @@ class Products with ChangeNotifier {
         Colors.yellow,
         Colors.cyan
       ],
-    ),
+    ),*/
   ];
 
   List<Product> get items {
