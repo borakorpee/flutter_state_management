@@ -22,25 +22,25 @@ class Products with ChangeNotifier {
     ),
     Product(
       id: 'p2',
-      title: 'iPhone 13',
+      title: 'iPhone 14 Pro Max',
       description: 'Smarter then ever',
       longDescription:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget efficitur metus. Vestibulum venenatis nisl id tincidunt blandit. Proin risus dui, ultricies sit amet mi quis, pellentesque dignissim massa. Duis quis ligula ut tortor ornare venenatis. Fusce nec tincidunt est. Pellentesque venenatis odio auctor accumsan congue.",
-      price: 59.99,
+      price: 499.99,
       imageUrl:
-          'https://www.kvk.com/images/Product/23032022120500_koknaryesili1%20kopyas%C4%B1.png',
-      color: Color.fromRGBO(64, 77, 62, 1),
+          'https://static1.pocketnowimages.com/wordpress/wp-content/uploads/2022/09/PBI-iPhone-14-Deep-Purple-1.png?q=50&fit=crop&w=1920&dpr=1.5',
+      color: Color.fromRGBO(77, 66, 83, 1),
       productPhotos: [
-        'https://www.kvk.com/images/Product/23032022120500_koknaryesili1%20kopyas%C4%B1.png',
+        'https://static1.pocketnowimages.com/wordpress/wp-content/uploads/2022/09/PBI-iPhone-14-Deep-Purple-1.png?q=50&fit=crop&w=1920&dpr=1.5',
         'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-max-gold-select?wid=940&hei=1112&fmt=png-alpha&.v=1660777235605',
         'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-spaceblack-select?wid=940&hei=1112&fmt=png-alpha&.v=1660777235198',
-        'https://glocalzone-assets.s3.eu-central-1.amazonaws.com/internet/19e082eb-ebf5-441d-b1e4-dcdd7e61d5d2.jpeg',
+        'https://d1erhn8sljv386.cloudfront.net/CA-HugmnEptyeQ9bJSwBeExZy9Q=/fit-in/1000x1000/filters:format(webp)/https://s3.amazonaws.com/lmbucket0/media/product/t-mobile-apple-iphone-14-pro-max-frontimage-silver.png',
       ],
       colorOptions: [
-        Color.fromRGBO(64, 77, 62, 1),
-        Color.fromRGBO(151, 174, 198, 1),
+        Color.fromRGBO(77, 66, 83, 1),
+        Color.fromARGB(255, 233, 203, 143),
         Color.fromRGBO(49, 47, 46, 1),
-        Color.fromRGBO(82, 80, 77, 1),
+        Colors.grey,
       ],
     ), /*
     Product(

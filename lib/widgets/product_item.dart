@@ -40,7 +40,10 @@ class ProductItem extends StatelessWidget {
                         color: product_color,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: Image.network(imageUrl),
+                      child: Hero(
+                        tag: "${id}",
+                        child: Image.network(imageUrl),
+                      ),
                     ),
                   ),
                 ),

@@ -52,9 +52,16 @@ class ProductTitleAndImage extends StatelessWidget {
               ),
               SizedBox(width: 40),
               Expanded(
-                child: Image.network(
-                  loadedProduct.productPhotos[activeColor_index],
-                  fit: BoxFit.fill,
+                child: Hero(
+                  tag: "${loadedProduct.id}",
+                  child: Container(
+                    width: 200,
+                    height: 200,
+                    child: Image.network(
+                      loadedProduct.productPhotos[activeColor_index],
+                      fit: BoxFit.contain,
+                    ),
+                  ),
                 ),
               ),
             ],
