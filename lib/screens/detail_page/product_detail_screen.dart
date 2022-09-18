@@ -38,7 +38,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         elevation: 0,
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.favorite_border),
+            icon: Icon(loadedProduct.isFavorite
+                ? Icons.favorite
+                : Icons.favorite_border),
             onPressed: () {},
           ),
           IconButton(

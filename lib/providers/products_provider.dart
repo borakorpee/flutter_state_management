@@ -42,14 +42,33 @@ class Products with ChangeNotifier {
         Color.fromRGBO(49, 47, 46, 1),
         Colors.grey,
       ],
-    ),
+    )
   ];
 
+  //var _showFavoritesOnly = false;
+
   List<Product> get items {
+    /*if (_showFavoritesOnly) {
+      return [..._items].where((proditem) => proditem.isFavorite).toList();
+    }*/
     return [..._items];
+  }
+
+  List<Product> get favoriteItems {
+    return [..._items].where((proditem) => proditem.isFavorite).toList();
   }
 
   Product findById(String id) {
     return _items.firstWhere((prod) => prod.id == id);
   }
+
+  /*void showFavoritesOnly() {
+    _showFavoritesOnly = true;
+    notifyListeners();
+  }
+
+  void showAll() {
+    _showFavoritesOnly = false;
+    notifyListeners();
+  }*/
 }
