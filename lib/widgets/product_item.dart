@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../app_thema/app_thema.dart';
 import '../providers/cart.dart';
 import '../providers/product.dart';
+import '../providers/products_provider.dart';
 import '../screens/detail_page/product_detail_screen.dart';
 
 class ProductItem extends StatelessWidget {
@@ -10,7 +11,7 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final product = Provider.of<Product>(context, listen: false);
+    final product = Provider.of<Product>(context, listen: true);
     final cart = Provider.of<Cart>(context, listen: false);
     return Padding(
       padding: EdgeInsets.only(top: 10),
@@ -66,7 +67,7 @@ class ProductItem extends StatelessWidget {
           ),
           Positioned(
             child: IconButton(
-                icon: Icon(product.isFavorite
+                icon: Icon(context.watch<Products>().isFav(product.id)
                     ? Icons.favorite
                     : Icons.favorite_border),
                 onPressed: () {

@@ -28,9 +28,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     final size = MediaQuery.of(context).size;
     final loadedProduct = Provider.of<Products>(
       context,
-      listen: false,
+      listen: true,
     ).findById(widget.id);
-
     return Scaffold(
       backgroundColor: loadedProduct.colorOptions[activeColor_index],
       appBar: AppBar(
@@ -41,7 +40,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             icon: Icon(loadedProduct.isFavorite
                 ? Icons.favorite
                 : Icons.favorite_border),
-            onPressed: () {},
+            onPressed: () {
+              Provider.of<Products>(context, listen: false)
+                  .toggleFavoritee(loadedProduct.id);
+            },
           ),
           IconButton(
             icon: Icon(Icons.shopping_cart_outlined),

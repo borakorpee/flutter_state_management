@@ -46,6 +46,16 @@ class Products with ChangeNotifier {
   ];
 
   //var _showFavoritesOnly = false;
+  bool isFav(String id) {
+    Product prod = _items.firstWhere((element) => element.id == id);
+    return prod.isFavorite;
+  }
+
+  void toggleFavoritee(String id) {
+    Product prod = _items.firstWhere((element) => element.id == id);
+    prod.isFavorite = !prod.isFavorite;
+    notifyListeners();
+  }
 
   List<Product> get items {
     /*if (_showFavoritesOnly) {
