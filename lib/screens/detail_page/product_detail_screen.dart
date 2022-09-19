@@ -7,6 +7,7 @@ import '../../app_thema/app_thema.dart';
 import '../../providers/cart.dart';
 import '../../providers/products_provider.dart';
 import '../../widgets/badge.dart';
+import '../cart_screen.dart';
 import 'components/add_to_cart.dart';
 import 'components/description.dart';
 import 'components/product_title_and_image.dart';
@@ -54,7 +55,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             ),
             child: IconButton(
               icon: Icon(Icons.shopping_cart_sharp),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(CartScreen.routeName);
+              },
             ),
           ),
           SizedBox(width: 10),
@@ -91,9 +94,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               if (numOfItems > 1) {
                                 setState(() {
                                   numOfItems--;
-                                  AddToCart(
-                                    itemCount: numOfItems,
-                                  );
                                 });
                                 ;
                               }
@@ -108,12 +108,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             buildOutlinedButton(Icons.add, () {
                               setState(() {
                                 numOfItems++;
-                                AddToCart(
-                                  itemCount: numOfItems,
-                                );
                               });
                             }),
-                            Text(numOfItems.toString()),
                           ],
                         ),
                         AddToCart(

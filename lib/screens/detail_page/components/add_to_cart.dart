@@ -29,7 +29,6 @@ class AddToCart extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 20),
       child: Row(
         children: <Widget>[
-          Text(itemCount.toString()),
           Container(
               margin: EdgeInsets.only(right: 20),
               height: 50,
@@ -41,8 +40,8 @@ class AddToCart extends StatelessWidget {
               ),
               child: RawMaterialButton(
                 onPressed: () {
-                  cart.addItem(loadedProduct.id, loadedProduct.price,
-                      loadedProduct.title);
+                  cart.addItemCount(loadedProduct.id, loadedProduct.price,
+                      loadedProduct.title, itemCount);
                 },
                 constraints: BoxConstraints(),
                 shape: RoundedRectangleBorder(
