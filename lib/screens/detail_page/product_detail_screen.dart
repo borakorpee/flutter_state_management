@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/providers/product.dart';
 import 'package:provider/provider.dart';
 import '../../app_thema/app_thema.dart';
+import '../../providers/cart.dart';
 import '../../providers/products_provider.dart';
+import '../../widgets/badge.dart';
 import 'components/add_to_cart.dart';
-import 'components/amount.dart';
 import 'components/description.dart';
 import 'components/product_title_and_image.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final String id;
-
   ProductDetailScreen(this.id);
 
   @override
@@ -21,6 +21,8 @@ class ProductDetailScreen extends StatefulWidget {
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
   int activeColor_index = 0;
+  int numOfItems = 1;
+
   final appThema app_thema = appThema();
 
   @override
@@ -45,9 +47,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   .toggleFavoritee(loadedProduct.id);
             },
           ),
-          IconButton(
-            icon: Icon(Icons.shopping_cart_outlined),
-            onPressed: () {},
+          Consumer<Cart>(
+            builder: (_, cart, ch) => Badge(
+              child: ch,
+              value: cart.itemCount.toString(),
+            ),
+            child: IconButton(
+              icon: Icon(Icons.shopping_cart_sharp),
+              onPressed: () {},
+            ),
           ),
           SizedBox(width: 10),
         ],
@@ -76,11 +84,44 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       children: <Widget>[
                         ColorOptions(loadedProduct),
                         Description(loadedProduct: loadedProduct),
-                        ProductCount(),
+                        /*ProductCount(),*/
+                        Row(
+                          children: <Widget>[
+                            buildOutlinedButton(Icons.remove, () {
+                              if (numOfItems > 1) {
+                                setState(() {
+                                  numOfItems--;
+                                  AddToCart(
+                                    itemCount: numOfItems,
+                                  );
+                                });
+                                ;
+                              }
+                            }),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              child: Text(
+                                numOfItems.toString().padLeft(2, "0"),
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                            ),
+                            buildOutlinedButton(Icons.add, () {
+                              setState(() {
+                                numOfItems++;
+                                AddToCart(
+                                  itemCount: numOfItems,
+                                );
+                              });
+                            }),
+                            Text(numOfItems.toString()),
+                          ],
+                        ),
                         AddToCart(
-                            loadedProduct: loadedProduct,
-                            activeColor_index: activeColor_index,
-                            app_thema: app_thema),
+                          loadedProduct: loadedProduct,
+                          activeColor_index: activeColor_index,
+                          app_thema: app_thema,
+                          itemCount: numOfItems,
+                        ),
                       ],
                     ),
                   ),
@@ -141,6 +182,21 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           ],
         ),
       ],
+    );
+  }
+
+  buildOutlinedButton(IconData icon, Function press) {
+    return SizedBox(
+      width: 40,
+      height: 32,
+      child: OutlinedButton(
+        style: OutlinedButton.styleFrom(
+            padding: EdgeInsets.zero,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(13))),
+        onPressed: press,
+        child: Icon(icon),
+      ),
     );
   }
 }

@@ -52,4 +52,23 @@ class Cart with ChangeNotifier {
     }
     notifyListeners();
   }
+
+  void addItemCount(
+    String productId,
+    double price,
+    String title,
+    int amount,
+  ) {
+    if (_items.containsKey(productId)) {
+      _items.update(
+        productId,
+        (cartitem) => CartItem(
+            id: cartitem.id,
+            title: cartitem.id,
+            quantity: amount,
+            price: cartitem.price),
+      );
+    }
+    notifyListeners();
+  }
 }

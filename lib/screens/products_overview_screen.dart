@@ -55,7 +55,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
               icon: Icon(Icons.shopping_cart),
               onPressed: () {},
             ),
-          )
+          ),
         ],
       ),
       body: Padding(
