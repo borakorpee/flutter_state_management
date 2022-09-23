@@ -5,12 +5,14 @@ class CartItem {
   final String title;
   final int quantity;
   final double price;
+  final String imgUrl;
 
   CartItem({
     @required this.id,
     @required this.title,
     @required this.quantity,
     @required this.price,
+    this.imgUrl,
   });
 }
 
@@ -53,14 +55,16 @@ class Cart with ChangeNotifier {
     notifyListeners();
   }
 
-  void addItemCount(String productId, double price, String title, int amount) {
+  void addItemCount(
+      String productId, double price, String title, int amount, String imgUrl) {
     _items.putIfAbsent(
-      productId,
+      imgUrl,
       () => CartItem(
         id: DateTime.now().toString(),
         title: title,
         quantity: amount,
         price: price,
+        imgUrl: imgUrl,
       ),
     );
 

@@ -15,6 +15,7 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final appThema app_thema = appThema();
     final cart = Provider.of<Cart>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Your Cart"),
@@ -63,6 +64,7 @@ class CartScreen extends StatelessWidget {
               cart.items.values.toList()[i].quantity,
               cart.items.values.toList()[i].title,
               cart.items.keys.toList()[i],
+              cart.items.values.toList()[i].imgUrl,
             ),
           ),
         ),

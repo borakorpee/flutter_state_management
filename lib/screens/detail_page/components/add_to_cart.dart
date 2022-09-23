@@ -40,8 +40,12 @@ class AddToCart extends StatelessWidget {
               ),
               child: RawMaterialButton(
                 onPressed: () {
-                  cart.addItemCount(loadedProduct.id, loadedProduct.price,
-                      loadedProduct.title, itemCount);
+                  cart.addItemCount(
+                      loadedProduct.id,
+                      loadedProduct.price,
+                      loadedProduct.title,
+                      itemCount,
+                      loadedProduct.productPhotos[activeColor_index]);
                 },
                 constraints: BoxConstraints(),
                 shape: RoundedRectangleBorder(
