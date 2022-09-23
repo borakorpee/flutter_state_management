@@ -27,7 +27,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
     return Scaffold(
       backgroundColor: app_thema.dark,
       appBar: AppBar(
-        title: Text("asd"),
+        title: Text("Shop"),
         actions: <Widget>[
           PopupMenuButton(
             onSelected: (FilterOptions selectedValue) {
@@ -37,7 +37,6 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
                 } else {
                   _showFavoritesOnly = true;
                 }
-                ;
               });
             },
             icon: Icon(Icons.more_vert),
