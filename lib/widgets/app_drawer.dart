@@ -11,10 +11,14 @@ class AppDrawer extends StatelessWidget {
       child: Column(
         children: <Widget>[
           AppBar(
-            title: Text("Hello"),
+            backgroundColor: Colors.white,
+            elevation: 2,
+            title: Text(
+              "Hello",
+              style: TextStyle(color: Colors.black),
+            ),
             automaticallyImplyLeading: false,
           ),
-          Divider(),
           ListTile(
             leading: Icon(Icons.shop),
             title: Text('Shop'),

@@ -25,9 +25,14 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: app_thema.dark,
       appBar: AppBar(
-        title: Text("Shop"),
+        elevation: 0,
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.black),
+        title: Text(
+          "Shop",
+          style: TextStyle(color: Colors.black),
+        ),
         actions: <Widget>[
           PopupMenuButton(
             onSelected: (FilterOptions selectedValue) {
@@ -39,7 +44,9 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
                 }
               });
             },
-            icon: Icon(Icons.more_vert),
+            icon: Icon(
+              Icons.more_vert,
+            ),
             itemBuilder: (_) => [
               PopupMenuItem(child: Text('Show All'), value: FilterOptions.All),
               PopupMenuItem(
@@ -53,7 +60,9 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
               value: cart.itemCount.toString(),
             ),
             child: IconButton(
-              icon: Icon(Icons.shopping_cart),
+              icon: Icon(
+                Icons.shopping_cart,
+              ),
               onPressed: () {
                 Navigator.of(context).pushNamed(CartScreen.routeName);
               },
