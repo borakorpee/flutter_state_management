@@ -26,12 +26,13 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).primaryColor,
         iconTheme: IconThemeData(color: Colors.black),
+        titleTextStyle: TextStyle(
+            color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
+        elevation: 0,
         title: Text(
           "Shop",
-          style: TextStyle(color: Colors.black),
         ),
         actions: <Widget>[
           PopupMenuButton(
