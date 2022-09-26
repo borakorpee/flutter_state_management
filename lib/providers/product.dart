@@ -16,12 +16,12 @@ class Product with ChangeNotifier {
     @required this.id,
     @required this.title,
     @required this.description,
-    @required this.longDescription,
+    this.longDescription,
     @required this.price,
     @required this.imageUrl,
-    @required this.color,
-    @required this.colorOptions,
-    @required this.productPhotos,
+    this.color,
+    this.colorOptions,
+    this.productPhotos,
     this.isFavorite = false,
   });
 
