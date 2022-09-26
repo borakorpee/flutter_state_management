@@ -91,6 +91,11 @@ class Products with ChangeNotifier {
       notifyListeners();
     } else {}
   }
+
+  void deleteProduct(String id) {
+    _items.removeWhere((element) => element.id == id);
+    notifyListeners();
+  }
   /*void showFavoritesOnly() {
     _showFavoritesOnly = true;
     notifyListeners();
