@@ -58,9 +58,10 @@ class CartScreen extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(height: 10),
           Container(
             width: double.infinity,
-            height: 50,
+            height: 100,
             child: ListView.builder(
               itemCount: cart.items.length,
               itemBuilder: (ctx, i) => NewOrderItem(
@@ -73,33 +74,59 @@ class CartScreen extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 31),
-            child: Divider(
-              thickness: 2,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 31),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  'Total:',
-                  style: GoogleFonts.dmSans(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 14,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 31),
+                child: Divider(
+                  thickness: 2,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 31),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      'Total:',
+                      style: GoogleFonts.dmSans(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 14,
+                      ),
+                    ),
+                    Text(
+                      '\$${cart.totalAmount.toStringAsFixed(2)}',
+                      style: GoogleFonts.dmSans(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 14,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 32, vertical: 37),
+                child: Container(
+                  width: 300,
+                  height: 50,
+                  child: FlatButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    color: Color(0xFFC4C4C4),
+                    onPressed: () {
+                      Provider.of<Orders>(context, listen: false).addOrder(
+                        cart.items.values.toList(),
+                        cart.totalAmount,
+                      );
+                      cart.clear();
+                    },
+                    child: Text('Checkout',
+                        style: GoogleFonts.dmSans(color: Colors.white,fontWeight:FontWeight.bold)
                   ),
                 ),
-                Text(
-                  '\$${cart.totalAmount.toStringAsFixed(2)}',
-                  style: GoogleFonts.dmSans(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 14,
-                  ),
-                )
-              ],
-            ),
+              ),
+            ],
           )
         ],
       ),
