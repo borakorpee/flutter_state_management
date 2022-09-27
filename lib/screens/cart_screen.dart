@@ -16,7 +16,6 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
-    final orderData = Provider.of<Orders>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -111,19 +110,21 @@ class CartScreen extends StatelessWidget {
                   width: 300,
                   height: 50,
                   child: FlatButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30)),
-                    color: Color(0xFFC4C4C4),
-                    onPressed: () {
-                      Provider.of<Orders>(context, listen: false).addOrder(
-                        cart.items.values.toList(),
-                        cart.totalAmount,
-                      );
-                      cart.clear();
-                    },
-                    child: Text('Checkout',
-                        style: GoogleFonts.dmSans(color: Colors.white,fontWeight:FontWeight.bold)
-                  ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                      color: Color(0xFFC4C4C4),
+                      onPressed: () {
+                        Provider.of<Orders>(context, listen: false).addOrder(
+                          cart.items.values.toList(),
+                          cart.totalAmount,
+                        );
+                        cart.clear();
+                      },
+                      child: Text('Checkout',
+                          style: GoogleFonts.dmSans(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 20))),
                 ),
               ),
             ],
