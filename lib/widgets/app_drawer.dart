@@ -11,11 +11,9 @@ class AppDrawer extends StatelessWidget {
       child: Column(
         children: <Widget>[
           AppBar(
-            backgroundColor: Colors.white,
             elevation: 2,
             title: Text(
               "Hello",
-              style: TextStyle(color: Colors.black),
             ),
             automaticallyImplyLeading: false,
           ),

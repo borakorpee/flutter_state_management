@@ -37,7 +37,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       backgroundColor: loadedProduct.colorOptions[activeColor_index],
       appBar: AppBar(
         backgroundColor: loadedProduct.colorOptions[activeColor_index],
-        elevation: 0,
         actions: <Widget>[
           IconButton(
             icon: Icon(loadedProduct.isFavorite
