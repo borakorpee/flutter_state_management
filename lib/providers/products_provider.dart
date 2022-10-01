@@ -79,16 +79,25 @@ class Products with ChangeNotifier {
       final List<Product> loadedProducts = [];
       extractedData.forEach((prodId, prodData) {
         loadedProducts.add(Product(
-            id: prodId,
-            title: prodData['title'],
-            description: prodData['description'],
-            price: prodData['price'],
-            isFavorite: prodData['isFavorite'],
-            imageUrl: prodData['imageURL']));
+          id: prodId,
+          title: prodData['title'],
+          description: prodData['description'],
+          price: prodData['price'],
+          isFavorite: prodData['isFavorite'],
+          imageUrl: prodData['imageURL'],
+          color: Colors.black,
+        ));
       });
-      loadedProducts.forEach((element) {
-        _items.add(element);
+
+      // I want to keep my dummy datas
+      _items.removeRange(2, _items.length);
+
+      loadedProducts.forEach((prod) {
+        if (!_items.contains(prod.id)) {
+          _items.add(prod);
+        }
       });
+
       notifyListeners();
     } catch (error) {
       throw (error);
@@ -130,9 +139,18 @@ class Products with ChangeNotifier {
     }
   }
 
-  void updateProduct(String id, Product newProduct) {
+  Future<void> updateProduct(String id, Product newProduct) async {
     final prodIndex = _items.indexWhere((element) => element.id == id);
     if (prodIndex >= 0) {
+      final url =
+          'https://flutter-shop-app-79429-default-rtdb.europe-west1.firebasedatabase.app/products/$id.json';
+      await http.patch(Uri.parse(url),
+          body: json.encode({
+            'title': newProduct.title,
+            'description': newProduct.description,
+            'price': newProduct.price,
+            'imageURL': newProduct.imageUrl,
+          }));
       _items[prodIndex] = newProduct;
       notifyListeners();
     } else {}
