@@ -1,5 +1,5 @@
 // ignore_for_file: missing_required_param, deprecated_member_use
-
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/product.dart';
@@ -14,13 +14,19 @@ class EditProductScreen extends StatefulWidget {
 }
 
 class _EditProductScreenState extends State<EditProductScreen> {
+  Color prodColor;
   final _priceFocusNode = FocusNode();
   final _descriptionFocusNode = FocusNode();
   final _imageUrlController = TextEditingController();
   final _imageURLFocusNode = FocusNode();
   final _form = GlobalKey<FormState>();
-  var _editedProduct =
-      Product(id: null, title: '', price: 0, description: '', imageUrl: '');
+  var _editedProduct = Product(
+    id: null,
+    title: '',
+    price: 0,
+    description: '',
+    imageUrl: '',
+  );
   var _initValues = {
     'title': '',
     'description': '',
@@ -48,10 +54,13 @@ class _EditProductScreenState extends State<EditProductScreen> {
           'title': _editedProduct.title,
           'description': _editedProduct.description,
           'price': _editedProduct.price.toString(),
+          'color': _editedProduct.color.toString(),
         };
         _imageUrlController.text = _editedProduct.imageUrl;
       }
+      prodColor = _editedProduct.color;
     }
+
     _isInit = false;
     super.didChangeDependencies();
   }
@@ -110,6 +119,10 @@ class _EditProductScreenState extends State<EditProductScreen> {
       _isLoading = false;
     });
     Navigator.of(context).pop();
+  }
+
+  Color get colorr {
+    return prodColor;
   }
 
   @override
@@ -201,6 +214,51 @@ class _EditProductScreenState extends State<EditProductScreen> {
                             isFavorite: _editedProduct.isFavorite);
                       },
                     ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Container(
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle, color: colorr),
+                          width: 40,
+                          height: 40,
+                        ),
+                        ElevatedButton(
+                            onPressed: () => {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: Text('Pick Color'),
+                                      content: TextButton(
+                                        child: Column(
+                                          children: [
+                                            ColorPicker(
+                                                pickerColor: Colors.black,
+                                                onColorChanged: (color) {
+                                                  setState(() {
+                                                    prodColor = color;
+                                                  });
+                                                }),
+                                            Text(
+                                              'Select',
+                                              style: TextStyle(fontSize: 20),
+                                            ),
+                                          ],
+                                        ),
+                                        onPressed: () =>
+                                            Navigator.of(context).pop(),
+                                      ),
+                                    ),
+                                  ),
+                                },
+                            child: Text(
+                              "Select Product Color",
+                              style: TextStyle(fontSize: 18),
+                            ))
+                      ],
+                    ),
+                    SizedBox(height: 10),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: <Widget>[
@@ -241,12 +299,14 @@ class _EditProductScreenState extends State<EditProductScreen> {
                             },
                             onSaved: (value) {
                               _editedProduct = Product(
-                                  title: _editedProduct.title,
-                                  price: _editedProduct.price,
-                                  description: _editedProduct.description,
-                                  imageUrl: value,
-                                  id: _editedProduct.id,
-                                  isFavorite: _editedProduct.isFavorite);
+                                title: _editedProduct.title,
+                                price: _editedProduct.price,
+                                description: _editedProduct.description,
+                                imageUrl: value,
+                                id: _editedProduct.id,
+                                isFavorite: _editedProduct.isFavorite,
+                                color: prodColor,
+                              );
                             },
                           ),
                         ),
