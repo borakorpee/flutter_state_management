@@ -157,6 +157,9 @@ class Products with ChangeNotifier {
   }
 
   void deleteProduct(String id) {
+    final url =
+        'https://flutter-shop-app-79429-default-rtdb.europe-west1.firebasedatabase.app/products/$id.json';
+    http.delete(Uri.parse(url));
     _items.removeWhere((element) => element.id == id);
     notifyListeners();
   }
