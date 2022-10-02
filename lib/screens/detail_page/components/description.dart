@@ -14,7 +14,8 @@ class Description extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 20),
-      child: Text(loadedProduct.longDescription, style: TextStyle(height: 1.5)),
+      child: Text(loadedProduct.longDescription ?? loadedProduct.description,
+          style: TextStyle(height: 1.5)),
     );
   }
 }

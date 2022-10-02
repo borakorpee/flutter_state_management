@@ -79,14 +79,15 @@ class Products with ChangeNotifier {
       final List<Product> loadedProducts = [];
       extractedData.forEach((prodId, prodData) {
         loadedProducts.add(Product(
-          id: prodId,
-          title: prodData['title'],
-          description: prodData['description'],
-          price: prodData['price'],
-          isFavorite: prodData['isFavorite'],
-          imageUrl: prodData['imageURL'],
-          color: Colors.black,
-        ));
+            id: prodId,
+            title: prodData['title'],
+            description: prodData['description'],
+            price: prodData['price'],
+            isFavorite: prodData['isFavorite'],
+            imageUrl: prodData['imageURL'],
+            color: Colors.deepPurple,
+            colorOptions: [Colors.deepPurple],
+            productPhotos: [prodData['imageURL']]));
       });
 
       // I want to keep my dummy datas

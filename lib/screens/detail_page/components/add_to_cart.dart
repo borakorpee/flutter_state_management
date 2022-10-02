@@ -36,16 +36,18 @@ class AddToCart extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(18),
                 border: Border.all(
-                    color: loadedProduct.colorOptions[activeColor_index]),
+                  color: loadedProduct.colorOptions[activeColor_index],
+                ),
               ),
               child: RawMaterialButton(
                 onPressed: () {
                   cart.addItemCount(
-                      loadedProduct.id,
-                      loadedProduct.price,
-                      loadedProduct.title,
-                      itemCount,
-                      loadedProduct.productPhotos[activeColor_index]);
+                    loadedProduct.id,
+                    loadedProduct.price,
+                    loadedProduct.title,
+                    itemCount,
+                    loadedProduct.productPhotos[activeColor_index],
+                  );
                 },
                 constraints: BoxConstraints(),
                 shape: RoundedRectangleBorder(
@@ -62,7 +64,9 @@ class AddToCart extends StatelessWidget {
               child: FlatButton(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18)),
-                color: loadedProduct.colorOptions[activeColor_index],
+                color: loadedProduct.colorOptions == null
+                    ? loadedProduct.color
+                    : loadedProduct.colorOptions[activeColor_index],
                 child: Text(
                   "Buy Now".toUpperCase(),
                   style: TextStyle(
