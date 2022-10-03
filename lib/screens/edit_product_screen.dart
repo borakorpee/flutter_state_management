@@ -26,12 +26,14 @@ class _EditProductScreenState extends State<EditProductScreen> {
     price: 0,
     description: '',
     imageUrl: '',
+    color: null,
   );
   var _initValues = {
     'title': '',
     'description': '',
     'price': '',
     'imageURL': '',
+    'color': null,
   };
 
   @override
@@ -125,6 +127,10 @@ class _EditProductScreenState extends State<EditProductScreen> {
     return prodColor;
   }
 
+  Color convertToColor(String color, {String opacity = 'ff'}) {
+    return Color(int.parse('$opacity$color', radix: 16));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -159,12 +165,14 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       },
                       onSaved: (value) {
                         _editedProduct = Product(
-                            title: value,
-                            price: _editedProduct.price,
-                            description: _editedProduct.description,
-                            imageUrl: _editedProduct.imageUrl,
-                            id: _editedProduct.id,
-                            isFavorite: _editedProduct.isFavorite);
+                          title: value,
+                          price: _editedProduct.price,
+                          description: _editedProduct.description,
+                          imageUrl: _editedProduct.imageUrl,
+                          id: _editedProduct.id,
+                          isFavorite: _editedProduct.isFavorite,
+                          color: prodColor,
+                        );
                       },
                     ),
                     TextFormField(
@@ -190,12 +198,14 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       },
                       onSaved: (value) {
                         _editedProduct = Product(
-                            title: _editedProduct.title,
-                            price: double.parse(value),
-                            description: _editedProduct.description,
-                            imageUrl: _editedProduct.imageUrl,
-                            id: _editedProduct.id,
-                            isFavorite: _editedProduct.isFavorite);
+                          title: _editedProduct.title,
+                          price: double.parse(value),
+                          description: _editedProduct.description,
+                          imageUrl: _editedProduct.imageUrl,
+                          id: _editedProduct.id,
+                          isFavorite: _editedProduct.isFavorite,
+                          color: prodColor,
+                        );
                       },
                     ),
                     TextFormField(
@@ -206,12 +216,14 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       focusNode: _descriptionFocusNode,
                       onSaved: (value) {
                         _editedProduct = Product(
-                            title: _editedProduct.title,
-                            price: _editedProduct.price,
-                            description: value,
-                            imageUrl: _editedProduct.imageUrl,
-                            id: _editedProduct.id,
-                            isFavorite: _editedProduct.isFavorite);
+                          title: _editedProduct.title,
+                          price: _editedProduct.price,
+                          description: value,
+                          imageUrl: _editedProduct.imageUrl,
+                          id: _editedProduct.id,
+                          isFavorite: _editedProduct.isFavorite,
+                          color: prodColor,
+                        );
                       },
                     ),
                     SizedBox(height: 10),
@@ -234,7 +246,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                                         child: Column(
                                           children: [
                                             ColorPicker(
-                                                pickerColor: Colors.black,
+                                                pickerColor: prodColor,
                                                 onColorChanged: (color) {
                                                   setState(() {
                                                     prodColor = color;

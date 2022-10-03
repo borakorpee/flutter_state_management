@@ -85,8 +85,8 @@ class Products with ChangeNotifier {
             price: prodData['price'],
             isFavorite: prodData['isFavorite'],
             imageUrl: prodData['imageURL'],
-            color: Colors.deepPurple,
-            colorOptions: [Colors.deepPurple],
+            color: Color(prodData['color']),
+            colorOptions: [Color(prodData['color'])],
             productPhotos: [prodData['imageURL']]));
       });
 
@@ -122,6 +122,7 @@ class Products with ChangeNotifier {
             'imageURL': product.imageUrl,
             'price': product.price,
             'isFavorite': product.isFavorite,
+            'color': product.color.value,
           },
         ),
       );
@@ -131,6 +132,7 @@ class Products with ChangeNotifier {
         description: product.description,
         price: product.price,
         imageUrl: product.imageUrl,
+        color: Color(product.color.value),
       );
       _items.add(newProduct);
       notifyListeners();
@@ -151,6 +153,7 @@ class Products with ChangeNotifier {
             'description': newProduct.description,
             'price': newProduct.price,
             'imageURL': newProduct.imageUrl,
+            'color': newProduct.color.value,
           }));
       _items[prodIndex] = newProduct;
       notifyListeners();
