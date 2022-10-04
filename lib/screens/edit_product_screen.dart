@@ -168,7 +168,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                           imageUrl: _editedProduct.imageUrl,
                           id: _editedProduct.id,
                           isFavorite: _editedProduct.isFavorite,
-                          color: prodColor,
+                          color: prodColor ?? Colors.black,
                         );
                       },
                     ),
@@ -202,7 +202,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                           imageUrl: _editedProduct.imageUrl,
                           id: _editedProduct.id,
                           isFavorite: _editedProduct.isFavorite,
-                          color: prodColor,
+                          color: prodColor ?? Colors.black,
                         );
                       },
                     ),
@@ -220,7 +220,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                           imageUrl: _editedProduct.imageUrl,
                           id: _editedProduct.id,
                           isFavorite: _editedProduct.isFavorite,
-                          color: prodColor,
+                          color: prodColor ?? Colors.black,
                         );
                       },
                     ),
@@ -239,7 +239,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                           imageUrl: _editedProduct.imageUrl,
                           id: _editedProduct.id,
                           isFavorite: _editedProduct.isFavorite,
-                          color: prodColor,
+                          color: prodColor ?? Colors.black,
                         );
                       },
                     ),
@@ -337,7 +337,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                                 imageUrl: value,
                                 id: _editedProduct.id,
                                 isFavorite: _editedProduct.isFavorite,
-                                color: prodColor,
+                                color: prodColor ?? Colors.black,
                               );
                             },
                           ),

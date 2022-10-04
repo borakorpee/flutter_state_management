@@ -73,7 +73,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 children: <Widget>[
                   Container(
                     padding: EdgeInsets.only(
-                        top: size.height * 0.12, left: 20, right: 20),
+                        top: size.height * 0.10, left: 20, right: 20),
                     margin: EdgeInsets.only(top: size.height * 0.3),
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -86,7 +86,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       children: <Widget>[
                         ColorOptions(loadedProduct),
                         Description(loadedProduct: loadedProduct),
-                        /*ProductCount(),*/
                         Row(
                           children: <Widget>[
                             buildOutlinedButton(Icons.remove, () {
