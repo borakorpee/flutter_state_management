@@ -17,6 +17,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
   Color prodColor;
   final _priceFocusNode = FocusNode();
   final _descriptionFocusNode = FocusNode();
+  final _longDescriptionFocusNode = FocusNode();
   final _imageUrlController = TextEditingController();
   final _imageURLFocusNode = FocusNode();
   final _form = GlobalKey<FormState>();
@@ -25,12 +26,14 @@ class _EditProductScreenState extends State<EditProductScreen> {
     title: '',
     price: 0,
     description: '',
+    longDescription: '',
     imageUrl: '',
     color: null,
   );
   var _initValues = {
     'title': '',
     'description': '',
+    'longDescription': '',
     'price': '',
     'imageURL': '',
     'color': null,
@@ -55,6 +58,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
         _initValues = {
           'title': _editedProduct.title,
           'description': _editedProduct.description,
+          'longDescription': _editedProduct.longDescription,
           'price': _editedProduct.price.toString(),
           'color': _editedProduct.color.toString(),
         };
@@ -71,7 +75,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
   void dispose() {
     _imageURLFocusNode.removeListener(_updateImageURL);
     _priceFocusNode.dispose();
-    _descriptionFocusNode.dispose();
+    _longDescriptionFocusNode.dispose();
     _imageURLFocusNode.dispose();
     super.dispose();
   }
@@ -123,14 +127,6 @@ class _EditProductScreenState extends State<EditProductScreen> {
     Navigator.of(context).pop();
   }
 
-  Color get colorr {
-    return prodColor;
-  }
-
-  Color convertToColor(String color, {String opacity = 'ff'}) {
-    return Color(int.parse('$opacity$color', radix: 16));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -168,6 +164,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                           title: value,
                           price: _editedProduct.price,
                           description: _editedProduct.description,
+                          longDescription: _editedProduct.longDescription,
                           imageUrl: _editedProduct.imageUrl,
                           id: _editedProduct.id,
                           isFavorite: _editedProduct.isFavorite,
@@ -184,7 +181,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       focusNode: _priceFocusNode,
                       onFieldSubmitted: (_) {
                         FocusScope.of(context)
-                            .requestFocus(_descriptionFocusNode);
+                            .requestFocus(_longDescriptionFocusNode);
                       },
                       validator: (value) {
                         if (value.isEmpty) {
@@ -201,6 +198,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                           title: _editedProduct.title,
                           price: double.parse(value),
                           description: _editedProduct.description,
+                          longDescription: _editedProduct.longDescription,
                           imageUrl: _editedProduct.imageUrl,
                           id: _editedProduct.id,
                           isFavorite: _editedProduct.isFavorite,
@@ -210,8 +208,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     ),
                     TextFormField(
                       initialValue: _initValues['description'],
-                      decoration: InputDecoration(labelText: 'Description'),
-                      maxLines: 3,
+                      decoration: InputDecoration(labelText: 'description'),
                       keyboardType: TextInputType.multiline,
                       focusNode: _descriptionFocusNode,
                       onSaved: (value) {
@@ -219,6 +216,26 @@ class _EditProductScreenState extends State<EditProductScreen> {
                           title: _editedProduct.title,
                           price: _editedProduct.price,
                           description: value,
+                          longDescription: _editedProduct.longDescription,
+                          imageUrl: _editedProduct.imageUrl,
+                          id: _editedProduct.id,
+                          isFavorite: _editedProduct.isFavorite,
+                          color: prodColor,
+                        );
+                      },
+                    ),
+                    TextFormField(
+                      initialValue: _initValues['longDescription'],
+                      decoration: InputDecoration(labelText: 'longDescription'),
+                      maxLines: 3,
+                      keyboardType: TextInputType.multiline,
+                      focusNode: _longDescriptionFocusNode,
+                      onSaved: (value) {
+                        _editedProduct = Product(
+                          title: _editedProduct.title,
+                          price: _editedProduct.price,
+                          description: _editedProduct.description,
+                          longDescription: value,
                           imageUrl: _editedProduct.imageUrl,
                           id: _editedProduct.id,
                           isFavorite: _editedProduct.isFavorite,
@@ -232,7 +249,8 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       children: <Widget>[
                         Container(
                           decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: colorr),
+                              shape: BoxShape.circle,
+                              color: prodColor ?? Colors.black),
                           width: 40,
                           height: 40,
                         ),
@@ -246,7 +264,8 @@ class _EditProductScreenState extends State<EditProductScreen> {
                                         child: Column(
                                           children: [
                                             ColorPicker(
-                                                pickerColor: prodColor,
+                                                pickerColor:
+                                                    prodColor ?? Colors.black,
                                                 onColorChanged: (color) {
                                                   setState(() {
                                                     prodColor = color;
@@ -314,6 +333,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                                 title: _editedProduct.title,
                                 price: _editedProduct.price,
                                 description: _editedProduct.description,
+                                longDescription: _editedProduct.longDescription,
                                 imageUrl: value,
                                 id: _editedProduct.id,
                                 isFavorite: _editedProduct.isFavorite,

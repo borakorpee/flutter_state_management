@@ -15,7 +15,7 @@ class Product with ChangeNotifier {
   Product({
     @required this.id,
     @required this.title,
-    @required this.description,
+    this.description,
     this.longDescription,
     @required this.price,
     @required this.imageUrl,

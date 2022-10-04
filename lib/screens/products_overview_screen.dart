@@ -95,9 +95,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
           ? Center(child: CircularProgressIndicator())
           : Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Expanded(
-                child: ProductsGrid(_showFavoritesOnly),
-              ),
+              child: ProductsGrid(_showFavoritesOnly),
             ),
     );
   }

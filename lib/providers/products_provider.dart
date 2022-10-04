@@ -82,6 +82,7 @@ class Products with ChangeNotifier {
             id: prodId,
             title: prodData['title'],
             description: prodData['description'],
+            longDescription: prodData['longDescription'],
             price: prodData['price'],
             isFavorite: prodData['isFavorite'],
             imageUrl: prodData['imageURL'],
@@ -119,6 +120,7 @@ class Products with ChangeNotifier {
           {
             'title': product.title,
             'description': product.description,
+            'longDescription': product.longDescription,
             'imageURL': product.imageUrl,
             'price': product.price,
             'isFavorite': product.isFavorite,
@@ -130,6 +132,7 @@ class Products with ChangeNotifier {
         id: json.decode(response.body)['name'],
         title: product.title,
         description: product.description,
+        longDescription: product.longDescription,
         price: product.price,
         imageUrl: product.imageUrl,
         color: Color(product.color.value),
@@ -151,6 +154,7 @@ class Products with ChangeNotifier {
           body: json.encode({
             'title': newProduct.title,
             'description': newProduct.description,
+            'longDescription': newProduct.longDescription,
             'price': newProduct.price,
             'imageURL': newProduct.imageUrl,
             'color': newProduct.color.value,

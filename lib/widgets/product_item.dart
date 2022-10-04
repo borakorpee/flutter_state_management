@@ -22,31 +22,33 @@ class ProductItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (ctx) => ProductDetailScreen(product.id),
+                Container(
+                  child: Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (ctx) => ProductDetailScreen(product.id),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: product.color,
+                          borderRadius: BorderRadius.circular(20),
                         ),
-                      );
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                        color: product.color,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Hero(
-                        tag: "${product.id}",
-                        child: Image.network(product.imageUrl),
+                        child: Hero(
+                          tag: "${product.id}",
+                          child: Image.network(product.imageUrl),
+                        ),
                       ),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 5,
+                  padding: EdgeInsets.symmetric(
+                    vertical: 3,
                   ),
                   child: FittedBox(
                     child: Text(

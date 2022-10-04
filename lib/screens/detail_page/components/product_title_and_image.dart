@@ -24,7 +24,7 @@ class ProductTitleAndImage extends StatelessWidget {
         children: <Widget>[
           FittedBox(
             child: Text(
-              loadedProduct.description,
+              loadedProduct.description ?? loadedProduct.longDescription,
               style: TextStyle(color: app_thema.white),
             ),
           ),
