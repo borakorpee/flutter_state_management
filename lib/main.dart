@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_complete_guide/providers/cart.dart';
 import 'package:flutter_complete_guide/screens/cart_screen.dart';
+import 'package:flutter_complete_guide/screens/detail_page/product_detail_screen.dart';
 import 'package:flutter_complete_guide/screens/edit_product_screen.dart';
 import 'package:flutter_complete_guide/screens/user_porducts_screen.dart';
 import './screens/products_overview_screen.dart';
@@ -9,6 +10,7 @@ import 'providers/products_provider.dart';
 import 'package:provider/provider.dart';
 import './providers/orders.dart';
 import './screens/orders_screen.dart';
+import './screens/auth_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -46,8 +48,9 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        home: ProductsOverviewScreen(),
+        home: AuthScreen(),
         routes: {
+          //ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
           CartScreen.routeName: (ctx) => CartScreen(),
           OrdersScreen.routeName: (ctx) => OrdersScreen(),
           UserProductsScreen.routeName: (ctx) => UserProductsScreen(),
