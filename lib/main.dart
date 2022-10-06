@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_complete_guide/providers/auth.dart';
 import 'package:flutter_complete_guide/providers/cart.dart';
 import 'package:flutter_complete_guide/screens/cart_screen.dart';
-import 'package:flutter_complete_guide/screens/detail_page/product_detail_screen.dart';
 import 'package:flutter_complete_guide/screens/edit_product_screen.dart';
 import 'package:flutter_complete_guide/screens/user_porducts_screen.dart';
-import './screens/products_overview_screen.dart';
 import 'providers/products_provider.dart';
 import 'package:provider/provider.dart';
 import './providers/orders.dart';
@@ -28,6 +27,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (ctx) => Orders(),
         ),
+        ChangeNotifierProvider(
+          create: (ctx) => Auth(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -49,6 +51,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         home: AuthScreen(),
+        //home: AuthScreen(),
         routes: {
           //ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
           CartScreen.routeName: (ctx) => CartScreen(),
