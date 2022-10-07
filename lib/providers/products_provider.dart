@@ -70,9 +70,11 @@ class Products with ChangeNotifier {
     return [..._items].where((proditem) => proditem.isFavorite).toList();
   }
 
+  final String authToken;
+  Products(this.authToken, this._items);
   Future<void> fetchAndSetProduct() async {
-    const url =
-        'https://flutter-shop-app-79429-default-rtdb.europe-west1.firebasedatabase.app/products.json';
+    final url =
+        'https://flutter-shop-app-79429-default-rtdb.europe-west1.firebasedatabase.app/products.json?auth=$authToken';
     try {
       final response = await http.get(Uri.parse(url));
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
