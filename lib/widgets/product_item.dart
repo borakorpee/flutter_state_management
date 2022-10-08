@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../app_thema/app_thema.dart';
+import '../providers/auth.dart';
 import '../providers/product.dart';
 import '../providers/products_provider.dart';
 import '../screens/detail_page/product_detail_screen.dart';
@@ -13,6 +14,7 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context, listen: true);
+    final authData = Provider.of<Auth>(context, listen: false);
     return Padding(
       padding: EdgeInsets.only(top: 10),
       child: Stack(
@@ -73,7 +75,7 @@ class ProductItem extends StatelessWidget {
                     ? Icons.favorite
                     : Icons.favorite_border),
                 onPressed: () {
-                  product.toggleFavorite();
+                  product.toggleFavorite(authData.token);
                 }),
             top: -2,
           ),

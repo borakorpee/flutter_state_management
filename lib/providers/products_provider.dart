@@ -5,6 +5,7 @@ import 'dart:convert';
 
 class Products with ChangeNotifier {
   List<Product> _items = [
+    /*
     Product(
       id: 'p1',
       title: 'Fancy Bag',
@@ -44,10 +45,9 @@ class Products with ChangeNotifier {
         Color.fromRGBO(49, 47, 46, 1),
         Colors.grey,
       ],
-    )
+    )*/
   ];
 
-  //var _showFavoritesOnly = false;
   bool isFav(String id) {
     Product prod = _items.firstWhere((element) => element.id == id);
     return prod.isFavorite;
@@ -60,9 +60,6 @@ class Products with ChangeNotifier {
   }
 
   List<Product> get items {
-    /*if (_showFavoritesOnly) {
-      return [..._items].where((proditem) => proditem.isFavorite).toList();
-    }*/
     return [..._items];
   }
 
@@ -92,16 +89,16 @@ class Products with ChangeNotifier {
             colorOptions: [Color(prodData['color'])],
             productPhotos: [prodData['imageURL']]));
       });
-
+      _items = loadedProducts;
       // I want to keep my dummy datas
-      _items.removeRange(2, _items.length);
+      //_items.removeRange(2, _items.length);
 
-      loadedProducts.forEach((prod) {
+      /*loadedProducts.forEach((prod) {
         if (!_items.contains(prod.id)) {
           _items.add(prod);
         }
       });
-
+*/
       notifyListeners();
     } catch (error) {
       throw (error);
@@ -113,8 +110,8 @@ class Products with ChangeNotifier {
   }
 
   Future<void> addProduct(Product product) async {
-    const url =
-        'https://flutter-shop-app-79429-default-rtdb.europe-west1.firebasedatabase.app/products.json';
+    final url =
+        'https://flutter-shop-app-79429-default-rtdb.europe-west1.firebasedatabase.app/products.json?auth=$authToken';
     try {
       final response = await http.post(
         Uri.parse(url),
@@ -151,7 +148,7 @@ class Products with ChangeNotifier {
     final prodIndex = _items.indexWhere((element) => element.id == id);
     if (prodIndex >= 0) {
       final url =
-          'https://flutter-shop-app-79429-default-rtdb.europe-west1.firebasedatabase.app/products/$id.json';
+          'https://flutter-shop-app-79429-default-rtdb.europe-west1.firebasedatabase.app/products/$id.json?auth=$authToken';
       await http.patch(Uri.parse(url),
           body: json.encode({
             'title': newProduct.title,
@@ -168,18 +165,9 @@ class Products with ChangeNotifier {
 
   void deleteProduct(String id) {
     final url =
-        'https://flutter-shop-app-79429-default-rtdb.europe-west1.firebasedatabase.app/products/$id.json';
+        'https://flutter-shop-app-79429-default-rtdb.europe-west1.firebasedatabase.app/products/$id.json?auth=$authToken';
     http.delete(Uri.parse(url));
     _items.removeWhere((element) => element.id == id);
     notifyListeners();
   }
-  /*void showFavoritesOnly() {
-    _showFavoritesOnly = true;
-    notifyListeners();
-  }
-
-  void showAll() {
-    _showFavoritesOnly = false;
-    notifyListeners();
-  }*/
 }
