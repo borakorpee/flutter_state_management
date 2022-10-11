@@ -6,6 +6,7 @@ import 'package:flutter_complete_guide/providers/auth.dart';
 import 'package:flutter_complete_guide/providers/cart.dart';
 import 'package:flutter_complete_guide/screens/cart_screen.dart';
 import 'package:flutter_complete_guide/screens/edit_product_screen.dart';
+import 'package:flutter_complete_guide/screens/new_auth_screen.dart';
 import 'package:flutter_complete_guide/screens/products_overview_screen.dart';
 import 'package:flutter_complete_guide/screens/user_porducts_screen.dart';
 import './screens/waiting_screen.dart';
@@ -43,6 +44,12 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'MyShop',
             theme: ThemeData(
+              inputDecorationTheme: InputDecorationTheme(
+                focusedBorder: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
+                disabledBorder: InputBorder.none,
+              ),
               primaryColor: Colors.white,
               appBarTheme: AppBarTheme(
                 backgroundColor: Colors.white,
@@ -58,7 +65,8 @@ class MyApp extends StatelessWidget {
                 ),
               ),
             ),
-            home: auth.isAuth
+            home: NewAuthScreen(),
+            /*home: auth.isAuth
                 ? ProductsOverviewScreen()
                 : FutureBuilder(
                     future: auth.tryAutoLogin(),
@@ -66,7 +74,7 @@ class MyApp extends StatelessWidget {
                         authResultSnapshot.connectionState ==
                                 ConnectionState.waiting
                             ? WaitingScreen()
-                            : AuthScreen()),
+                            : AuthScreen()),*/
             routes: {
               CartScreen.routeName: (ctx) => CartScreen(),
               OrdersScreen.routeName: (ctx) => OrdersScreen(),
