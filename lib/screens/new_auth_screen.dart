@@ -12,6 +12,7 @@ import '../providers/auth.dart';
 enum AuthMode { Signup, Login }
 
 class NewAuthScreen extends StatelessWidget {
+  static const routeName = '/auth';
   const NewAuthScreen({Key key}) : super(key: key);
 
   @override
@@ -182,6 +183,8 @@ class _AuthCardState extends State<AuthCard> {
                           hintText: 'Confirm Password',
                           iconPath: 'Lock.png',
                           obscureText: true,
+                          authMode: _authMode,
+                          passwcontroller: _passwordController,
                         ),
                 ],
               )),
@@ -373,7 +376,10 @@ class InputCard extends StatelessWidget {
   final String iconPath;
   final bool obscureText;
   final String tag;
+  final AuthMode authMode;
   final TextEditingController controller;
+  final TextEditingController passwcontroller;
+
   final Map<String, String> authData;
   InputCard({
     @required this.hintText,
@@ -382,6 +388,8 @@ class InputCard extends StatelessWidget {
     this.tag,
     this.authData,
     this.controller,
+    this.authMode,
+    this.passwcontroller,
   });
 
   @override
@@ -400,13 +408,15 @@ class InputCard extends StatelessWidget {
                 if (value.isEmpty || value.length < 5) {
                   return 'Password is too short!';
                 }
-                return 'AAAAAAAAAAA';
               } else if (tag == 'email') {
                 if (value.isEmpty || !value.contains('@')) {
                   return 'Invalid email!';
                 }
+              } else if (authMode == AuthMode.Signup) {
+                if (value != passwcontroller.text) {
+                  return 'Passwords do not match!';
+                }
               }
-              return 'BBBBBBBB';
             },
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
@@ -423,7 +433,9 @@ class InputCard extends StatelessWidget {
               color: Color(0xffFFFFFF).withOpacity(0.8),
             ),
             onSaved: (value) {
-              authData[tag] = value;
+              if (tag != null) {
+                authData[tag] = value;
+              }
             },
           ),
         ),

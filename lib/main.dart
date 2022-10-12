@@ -65,8 +65,8 @@ class MyApp extends StatelessWidget {
                 ),
               ),
             ),
-            home: NewAuthScreen(),
-            /*home: auth.isAuth
+            //home: NewAuthScreen(),
+            home: auth.isAuth
                 ? ProductsOverviewScreen()
                 : FutureBuilder(
                     future: auth.tryAutoLogin(),
@@ -74,7 +74,7 @@ class MyApp extends StatelessWidget {
                         authResultSnapshot.connectionState ==
                                 ConnectionState.waiting
                             ? WaitingScreen()
-                            : AuthScreen()),*/
+                            : NewAuthScreen()),
             routes: {
               CartScreen.routeName: (ctx) => CartScreen(),
               OrdersScreen.routeName: (ctx) => OrdersScreen(),
