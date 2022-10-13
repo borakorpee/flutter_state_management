@@ -29,33 +29,8 @@ class NewAuthScreen extends StatelessWidget {
         ),
         backgroundColor: Colors.black,
         body: SingleChildScrollView(
-            child:
-                AuthCard()) /*Padding(
-          padding: EdgeInsets.all(15),
-          child: Column(
-            children: [
-              ImageandText(),
-              SizedBox(height: 17),
-              InputCard('Email', 'Message.png'),
-              InputCard('Password', 'Lock.png'),
-              SizedBox(height: 14),
-              switchAndTexts(),
-              SizedBox(height: 25),
-              ButtonAndText(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  LogInWithSocials('google 1.png'),
-                  LogInWithSocials('apple 1.png'),
-                  LogInWithSocials('facebook-app-symbol 1.png'),
-                ],
-              ),
-              SizedBox(height: 15),
-              BottomText()
-            ],
-          ),
-        )*/
-        );
+          child: AuthCard(),
+        ));
   }
 }
 
@@ -96,7 +71,6 @@ class _AuthCardState extends State<AuthCard> {
   Future<void> _submit() async {
     print('object');
     if (!_formKey.currentState.validate()) {
-      // Invalid!
       return;
     }
     _formKey.currentState.save();
@@ -177,15 +151,24 @@ class _AuthCardState extends State<AuthCard> {
                   authData: _authData,
                   controller: _passwordController,
                 ),
-                _authMode == AuthMode.Login
-                    ? switchAndTexts()
-                    : InputCard(
-                        hintText: 'Confirm Password',
-                        iconPath: 'Lock.png',
-                        obscureText: true,
-                        authMode: _authMode,
-                        passwcontroller: _passwordController,
-                      ),
+                AnimatedSwitcher(
+                  duration: Duration(milliseconds: 600),
+                  transitionBuilder: (child, animation) {
+                    return ScaleTransition(
+                      scale: animation,
+                      child: child,
+                    );
+                  },
+                  child: _authMode == AuthMode.Login
+                      ? switchAndTexts()
+                      : InputCard(
+                          hintText: 'Confirm Password',
+                          iconPath: 'Lock.png',
+                          obscureText: true,
+                          authMode: _authMode,
+                          passwcontroller: _passwordController,
+                        ),
+                )
               ],
             ),
           ),
@@ -291,7 +274,7 @@ class BottomText extends StatelessWidget {
             ),
           ),
           TextSpan(
-              text: authMode == AuthMode.Login ? 'Sign up' : 'Log in',
+              text: authMode == AuthMode.Login ? 'Sign up' : ' Log in',
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
