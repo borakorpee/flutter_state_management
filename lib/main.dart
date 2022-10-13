@@ -43,12 +43,6 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'MyShop',
             theme: ThemeData(
-              inputDecorationTheme: InputDecorationTheme(
-                focusedBorder: InputBorder.none,
-                enabledBorder: InputBorder.none,
-                errorBorder: InputBorder.none,
-                disabledBorder: InputBorder.none,
-              ),
               primaryColor: Colors.white,
               appBarTheme: AppBarTheme(
                 backgroundColor: Colors.white,

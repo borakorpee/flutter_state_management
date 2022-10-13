@@ -406,6 +406,10 @@ class InputCard extends StatelessWidget {
             },
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
+              focusedBorder: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              errorBorder: InputBorder.none,
+              disabledBorder: InputBorder.none,
               prefixIcon: Image.asset(
                 'assets/images/$iconPath',
                 color: Color(0xffFFFFFF),
