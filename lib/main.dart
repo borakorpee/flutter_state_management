@@ -14,7 +14,6 @@ import 'providers/products_provider.dart';
 import 'package:provider/provider.dart';
 import './providers/orders.dart';
 import './screens/orders_screen.dart';
-import './screens/auth_screen.dart';
 
 void main() => runApp(MyApp());
 

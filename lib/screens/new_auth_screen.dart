@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, unused_field, must_be_immutable
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
@@ -159,39 +159,36 @@ class _AuthCardState extends State<AuthCard> {
           ),
           SizedBox(height: 17),
           Form(
-              key: _formKey,
-              child: Column(
-                children: <Widget>[
-                  InputCard(
-                    hintText: 'Email',
-                    iconPath: 'Message.png',
-                    obscureText: false,
-                    tag: 'email',
-                    authData: _authData,
-                  ),
-                  InputCard(
-                    hintText: 'Password',
-                    iconPath: 'Lock.png',
-                    obscureText: true,
-                    tag: 'password',
-                    authData: _authData,
-                    controller: _passwordController,
-                  ),
-                  _authMode == AuthMode.Login
-                      ? switchAndTexts()
-                      : InputCard(
-                          hintText: 'Confirm Password',
-                          iconPath: 'Lock.png',
-                          obscureText: true,
-                          authMode: _authMode,
-                          passwcontroller: _passwordController,
-                        ),
-                ],
-              )),
-
-          /*
-          */
-
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
+                InputCard(
+                  hintText: 'Email',
+                  iconPath: 'Message.png',
+                  obscureText: false,
+                  tag: 'email',
+                  authData: _authData,
+                ),
+                InputCard(
+                  hintText: 'Password',
+                  iconPath: 'Lock.png',
+                  obscureText: true,
+                  tag: 'password',
+                  authData: _authData,
+                  controller: _passwordController,
+                ),
+                _authMode == AuthMode.Login
+                    ? switchAndTexts()
+                    : InputCard(
+                        hintText: 'Confirm Password',
+                        iconPath: 'Lock.png',
+                        obscureText: true,
+                        authMode: _authMode,
+                        passwcontroller: _passwordController,
+                      ),
+              ],
+            ),
+          ),
           SizedBox(height: 25),
           ButtonAndText(
             authMode: _authMode,
@@ -207,6 +204,7 @@ class _AuthCardState extends State<AuthCard> {
           ),
           SizedBox(height: 15),
           BottomText(
+            authMode: _authMode,
             switchAuth: _switchAuthMode,
           ),
         ],
@@ -271,9 +269,11 @@ class ButtonAndText extends StatelessWidget {
 
 class BottomText extends StatelessWidget {
   final Function switchAuth;
+  final AuthMode authMode;
   const BottomText({
     Key key,
     this.switchAuth,
+    this.authMode,
   }) : super(key: key);
 
   @override
@@ -282,14 +282,16 @@ class BottomText extends StatelessWidget {
       text: TextSpan(
         children: [
           TextSpan(
-            text: 'Don’t have an account? ',
+            text: authMode == AuthMode.Login
+                ? 'Don’t have an account? '
+                : 'Have an account?',
             style: TextStyle(
               color: Colors.white.withOpacity(0.8),
               fontSize: 12,
             ),
           ),
           TextSpan(
-              text: 'Register now',
+              text: authMode == AuthMode.Login ? 'Sign up' : 'Log in',
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
@@ -403,6 +405,7 @@ class InputCard extends StatelessWidget {
           child: TextFormField(
             controller: controller,
             obscureText: obscureText,
+            // ignore: missing_return
             validator: (value) {
               if (tag == 'password') {
                 if (value.isEmpty || value.length < 5) {

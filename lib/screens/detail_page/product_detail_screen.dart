@@ -67,65 +67,62 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         child: SingleChildScrollView(
             child: Column(
           children: <Widget>[
-            SizedBox(
-              height: size.height,
-              child: Stack(
-                children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.only(
-                        top: size.height * 0.10, left: 20, right: 20),
-                    margin: EdgeInsets.only(top: size.height * 0.3),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(24),
-                        topRight: Radius.circular(24),
-                      ),
+            Stack(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(
+                      top: size.height * 0.10, left: 20, right: 20),
+                  margin: EdgeInsets.only(top: size.height * 0.3),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(24),
+                      topRight: Radius.circular(24),
                     ),
-                    child: Column(
-                      children: <Widget>[
-                        ColorOptions(loadedProduct),
-                        Description(loadedProduct: loadedProduct),
-                        Row(
-                          children: <Widget>[
-                            buildOutlinedButton(Icons.remove, () {
-                              if (numOfItems > 1) {
-                                setState(() {
-                                  numOfItems--;
-                                });
-                                ;
-                              }
-                            }),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              child: Text(
-                                numOfItems.toString().padLeft(2, "0"),
-                                style: Theme.of(context).textTheme.headline6,
-                              ),
-                            ),
-                            buildOutlinedButton(Icons.add, () {
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      ColorOptions(loadedProduct),
+                      Description(loadedProduct: loadedProduct),
+                      Row(
+                        children: <Widget>[
+                          buildOutlinedButton(Icons.remove, () {
+                            if (numOfItems > 1) {
                               setState(() {
-                                numOfItems++;
+                                numOfItems--;
                               });
-                            }),
-                          ],
-                        ),
-                        AddToCart(
-                          loadedProduct: loadedProduct,
-                          activeColor_index: activeColor_index,
-                          app_thema: app_thema,
-                          itemCount: numOfItems,
-                        ),
-                      ],
-                    ),
+                              ;
+                            }
+                          }),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            child: Text(
+                              numOfItems.toString().padLeft(2, "0"),
+                              style: Theme.of(context).textTheme.headline6,
+                            ),
+                          ),
+                          buildOutlinedButton(Icons.add, () {
+                            setState(() {
+                              numOfItems++;
+                            });
+                          }),
+                        ],
+                      ),
+                      AddToCart(
+                        loadedProduct: loadedProduct,
+                        activeColor_index: activeColor_index,
+                        app_thema: app_thema,
+                        itemCount: numOfItems,
+                      ),
+                    ],
                   ),
-                  ProductTitleAndImage(
-                    loadedProduct: loadedProduct,
-                    app_thema: app_thema,
-                    activeColor_index: activeColor_index,
-                  ),
-                ],
-              ),
+                ),
+                ProductTitleAndImage(
+                  loadedProduct: loadedProduct,
+                  app_thema: app_thema,
+                  activeColor_index: activeColor_index,
+                ),
+              ],
             ),
           ],
         )),
