@@ -23,7 +23,7 @@ class ProductDetailScreen extends StatefulWidget {
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
   int activeColor_index = 0;
   int numOfItems = 1;
-
+  Widget animation = null;
   final appThema app_thema = appThema();
 
   @override
@@ -62,87 +62,114 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           SizedBox(width: 10),
         ],
       ),
-      body: Padding(
-        padding: EdgeInsets.only(top: 10),
-        child: Column(
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height - 230,
-              child: SingleChildScrollView(
-                  child: Column(
-                children: <Widget>[
-                  Stack(
+      body: Stack(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(top: 10),
+            child: Column(
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height - 230,
+                  child: SingleChildScrollView(
+                      child: Column(
                     children: <Widget>[
-                      Container(
-                        height: 400,
-                        padding: EdgeInsets.only(
-                            top: size.height * 0.10, left: 20, right: 20),
-                        margin: EdgeInsets.only(top: size.height * 0.3),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(24),
-                            topRight: Radius.circular(24),
-                          ),
-                        ),
-                        child: Column(
-                          children: <Widget>[
-                            ColorOptions(loadedProduct),
-                            Description(loadedProduct: loadedProduct),
-                            Row(
+                      Stack(
+                        children: <Widget>[
+                          Container(
+                            height: 400,
+                            padding: EdgeInsets.only(
+                                top: size.height * 0.10, left: 20, right: 20),
+                            margin: EdgeInsets.only(top: size.height * 0.3),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(24),
+                                topRight: Radius.circular(24),
+                              ),
+                            ),
+                            child: Column(
                               children: <Widget>[
-                                buildOutlinedButton(Icons.remove, () {
-                                  if (numOfItems > 1) {
-                                    setState(() {
-                                      numOfItems--;
-                                    });
-                                    ;
-                                  }
-                                }),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  child: Text(
-                                    numOfItems.toString().padLeft(2, "0"),
-                                    style:
-                                        Theme.of(context).textTheme.headline6,
-                                  ),
+                                ColorOptions(loadedProduct),
+                                Description(loadedProduct: loadedProduct),
+                                Row(
+                                  children: <Widget>[
+                                    buildOutlinedButton(Icons.remove, () {
+                                      if (numOfItems > 1) {
+                                        setState(() {
+                                          numOfItems--;
+                                        });
+                                        ;
+                                      }
+                                    }),
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 10),
+                                      child: Text(
+                                        numOfItems.toString().padLeft(2, "0"),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline6,
+                                      ),
+                                    ),
+                                    buildOutlinedButton(Icons.add, () {
+                                      setState(() {
+                                        numOfItems++;
+                                      });
+                                    }),
+                                  ],
                                 ),
-                                buildOutlinedButton(Icons.add, () {
-                                  setState(() {
-                                    numOfItems++;
-                                  });
-                                }),
                               ],
                             ),
-                          ],
-                        ),
-                      ),
-                      ProductTitleAndImage(
-                        loadedProduct: loadedProduct,
-                        app_thema: app_thema,
-                        activeColor_index: activeColor_index,
+                          ),
+                          ProductTitleAndImage(
+                            loadedProduct: loadedProduct,
+                            app_thema: app_thema,
+                            activeColor_index: activeColor_index,
+                          ),
+                        ],
                       ),
                     ],
-                  ),
-                ],
-              )),
-            ),
-            Expanded(
-              child: Container(
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: AddToCart(
-                    loadedProduct: loadedProduct,
-                    activeColor_index: activeColor_index,
-                    app_thema: app_thema,
-                    itemCount: numOfItems,
+                  )),
+                ),
+                Row(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          setState(() {
+                            animation = CartAnimation();
+                          });
+                          Future.delayed(Duration(seconds: 2), () {
+                            setState(() {
+                              animation = null;
+                            });
+                          });
+                        },
+                        icon: Icon(Icons.add_shopping_cart_outlined))
+                  ],
+                )
+                /*Expanded(
+                child: Container(
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: AddToCart(
+                      loadedProduct: loadedProduct,
+                      activeColor_index: activeColor_index,
+                      app_thema: app_thema,
+                      itemCount: numOfItems,
+                    ),
                   ),
                 ),
-              ),
+              ),*/
+              ],
             ),
-          ],
-        ),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            child: animation == null ? Container() : CartAnimation(),
+          ),
+        ],
       ),
     );
   }
@@ -206,5 +233,65 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         child: Icon(icon),
       ),
     );
+  }
+}
+
+class CartAnimation extends StatefulWidget {
+  const CartAnimation({Key key}) : super(key: key);
+
+  @override
+  State<CartAnimation> createState() => _CartAnimationState();
+}
+
+class _CartAnimationState extends State<CartAnimation>
+    with TickerProviderStateMixin {
+  AnimationController _controller;
+
+  @override
+  void initState() {
+    _controller =
+        AnimationController(duration: Duration(seconds: 2), vsync: this)
+          ..forward();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+      final Size biggest = constraints.biggest;
+      return Stack(
+        children: [
+          PositionedTransition(
+              rect: RelativeRectTween(
+                begin: RelativeRect.fromSize(
+                    Rect.fromLTRB(
+                      0,
+                      biggest.height - 20,
+                      biggest.width / 2,
+                      biggest.height,
+                    ),
+                    biggest),
+                end: RelativeRect.fromSize(
+                    Rect.fromLTRB(
+                      biggest.width - 60,
+                      -50,
+                      biggest.width,
+                      0,
+                    ),
+                    biggest),
+              ).animate(
+                  CurvedAnimation(parent: _controller, curve: Curves.ease)),
+              child:
+                  Icon(Icons.add_shopping_cart_outlined, color: Colors.black))
+        ],
+      );
+    });
   }
 }
