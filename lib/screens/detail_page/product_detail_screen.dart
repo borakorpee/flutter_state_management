@@ -8,7 +8,6 @@ import '../../providers/cart.dart';
 import '../../providers/products_provider.dart';
 import '../../widgets/badge.dart';
 import '../cart_screen.dart';
-import 'components/add_to_cart.dart';
 import 'components/description.dart';
 import 'components/product_title_and_image.dart';
 
@@ -198,7 +197,18 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                         fontWeight: FontWeight.bold,
                                         color: app_thema.white),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    cart.addItemCount(
+                                      loadedProduct.id,
+                                      loadedProduct.price,
+                                      loadedProduct.title,
+                                      numOfItems,
+                                      loadedProduct
+                                          .productPhotos[activeColor_index],
+                                    );
+                                    Navigator.of(context).pushReplacementNamed(
+                                        CartScreen.routeName);
+                                  },
                                 ),
                               ),
                             ),
