@@ -28,43 +28,44 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<Cart>(context, listen: false);
     final size = MediaQuery.of(context).size;
     final loadedProduct = Provider.of<Products>(
       context,
       listen: true,
     ).findById(widget.id);
-    return Scaffold(
-      backgroundColor: loadedProduct.colorOptions[activeColor_index],
-      appBar: AppBar(
-        backgroundColor: loadedProduct.colorOptions[activeColor_index],
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(loadedProduct.isFavorite
-                ? Icons.favorite
-                : Icons.favorite_border),
-            onPressed: () {
-              Provider.of<Products>(context, listen: false)
-                  .toggleFavoritee(loadedProduct.id);
-            },
+    return Stack(
+      children: [
+        Scaffold(
+          backgroundColor: loadedProduct.colorOptions[activeColor_index],
+          appBar: AppBar(
+            backgroundColor: loadedProduct.colorOptions[activeColor_index],
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(loadedProduct.isFavorite
+                    ? Icons.favorite
+                    : Icons.favorite_border),
+                onPressed: () {
+                  Provider.of<Products>(context, listen: false)
+                      .toggleFavoritee(loadedProduct.id);
+                },
+              ),
+              Consumer<Cart>(
+                builder: (_, cart, ch) => Badge(
+                  child: ch,
+                  value: cart.itemCount.toString(),
+                ),
+                child: IconButton(
+                  icon: Icon(Icons.shopping_cart_sharp),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(CartScreen.routeName);
+                  },
+                ),
+              ),
+              SizedBox(width: 10),
+            ],
           ),
-          Consumer<Cart>(
-            builder: (_, cart, ch) => Badge(
-              child: ch,
-              value: cart.itemCount.toString(),
-            ),
-            child: IconButton(
-              icon: Icon(Icons.shopping_cart_sharp),
-              onPressed: () {
-                Navigator.of(context).pushNamed(CartScreen.routeName);
-              },
-            ),
-          ),
-          SizedBox(width: 10),
-        ],
-      ),
-      body: Stack(
-        children: [
-          Padding(
+          body: Padding(
             padding: EdgeInsets.only(top: 10),
             child: Column(
               children: [
@@ -131,46 +132,92 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     ],
                   )),
                 ),
-                Row(
-                  children: [
-                    IconButton(
-                        onPressed: () {
-                          setState(() {
-                            animation = CartAnimation();
-                          });
-                          Future.delayed(Duration(seconds: 2), () {
-                            setState(() {
-                              animation = null;
-                            });
-                          });
-                        },
-                        icon: Icon(Icons.add_shopping_cart_outlined))
-                  ],
-                )
-                /*Expanded(
-                child: Container(
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: AddToCart(
-                      loadedProduct: loadedProduct,
-                      activeColor_index: activeColor_index,
-                      app_thema: app_thema,
-                      itemCount: numOfItems,
+                Expanded(
+                  child: Container(
+                    color: Colors.white,
+                    child: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                                margin: EdgeInsets.only(right: 20),
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(18),
+                                  border: Border.all(
+                                    color: loadedProduct
+                                        .colorOptions[activeColor_index],
+                                  ),
+                                ),
+                                child: RawMaterialButton(
+                                  onPressed: () {
+                                    cart.addItemCount(
+                                      loadedProduct.id,
+                                      loadedProduct.price,
+                                      loadedProduct.title,
+                                      numOfItems,
+                                      loadedProduct
+                                          .productPhotos[activeColor_index],
+                                    );
+                                    setState(() {
+                                      animation = CartAnimation();
+                                    });
+                                    Future.delayed(Duration(seconds: 2), () {
+                                      setState(() {
+                                        animation = null;
+                                      });
+                                    });
+                                  },
+                                  constraints: BoxConstraints(),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18)),
+                                  child: Icon(
+                                    Icons.add_shopping_cart_outlined,
+                                    color: loadedProduct
+                                        .colorOptions[activeColor_index],
+                                  ),
+                                  padding: EdgeInsets.all(8),
+                                )),
+                            Expanded(
+                              child: SizedBox(
+                                height: 50,
+                                child: FlatButton(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18)),
+                                  color: loadedProduct.colorOptions == null
+                                      ? loadedProduct.color
+                                      : loadedProduct
+                                          .colorOptions[activeColor_index],
+                                  child: Text(
+                                    "Buy Now".toUpperCase(),
+                                    style: TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold,
+                                        color: app_thema.white),
+                                  ),
+                                  onPressed: () {},
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),*/
               ],
             ),
           ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            child: animation == null ? Container() : CartAnimation(),
-          ),
-        ],
-      ),
+        ),
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: animation == null ? Container() : CartAnimation(),
+        ),
+      ],
     );
   }
 
@@ -272,24 +319,23 @@ class _CartAnimationState extends State<CartAnimation>
               rect: RelativeRectTween(
                 begin: RelativeRect.fromSize(
                     Rect.fromLTRB(
-                      0,
-                      biggest.height - 20,
-                      biggest.width / 2,
+                      25,
+                      biggest.height - 160,
+                      40,
                       biggest.height,
                     ),
                     biggest),
                 end: RelativeRect.fromSize(
                     Rect.fromLTRB(
-                      biggest.width - 60,
+                      biggest.width - 70,
                       -50,
                       biggest.width,
-                      0,
+                      200,
                     ),
                     biggest),
-              ).animate(
-                  CurvedAnimation(parent: _controller, curve: Curves.ease)),
-              child:
-                  Icon(Icons.add_shopping_cart_outlined, color: Colors.black))
+              ).animate(CurvedAnimation(
+                  parent: _controller, curve: Curves.decelerate)),
+              child: Icon(Icons.shopping_cart, color: Colors.black))
         ],
       );
     });
