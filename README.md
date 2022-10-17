@@ -1,16 +1,17 @@
-# shop_app
+Shop APP
 
-A new Flutter project.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+https://user-images.githubusercontent.com/72546329/196260934-ae08b7cd-2179-48e0-937f-fff1ccf9f9d9.mp4
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+https://user-images.githubusercontent.com/72546329/196261020-eb0c96ac-cd58-479c-86f7-71ec2d26e1f4.mp4
+
+
+
+
+https://user-images.githubusercontent.com/72546329/196261024-52ebeafe-aa5f-47fc-8139-8a6d5163610d.mov
+
